@@ -1,0 +1,86 @@
+{% extends 'vue/celebs/index.html' %} {% load static i18n %} {% block content %}
+<ic-genre></ic-genre>
+{% endblock %}{% block extrascript %}
+<script>
+  Vue.component("ic-genre", {
+    delimiters: ["[[", "]]"],
+    template: `
+      <div>
+          <v-toolbar flat color="grey darken-3" dark>
+            <h1 class="display-1">[[ page.pTitle ]]</h1>
+          </v-toolbar>
+
+          {% include 'vue/cp-data-table.html' %}
+        </div>
+    `,
+    data() {
+      return {
+        table: {
+          tData: [],
+          tLoading: true,
+          tSearch: "",
+          tHeaders: [
+            { text: "{% trans 'Name' %}", value: "name" },
+            { text: "{% trans 'Fav' %}", value: "fav", sortable: false }
+          ],
+          tTitle: "{% trans 'Your Favorite Genres List' %}",
+          tItem: "{% trans 'Your Genre' %}",
+          tItemUrl: "{% url 'genre_detail' 0  %}".slice(0, -2),
+          tSelected: []
+        },
+
+        page: {
+          pData: {},
+          pTitle: "{% trans 'Your Favorite Genres' %}",
+          pUrl: "{% url 'user_genre_list' %}",
+          pAllUrl: "{% url 'genre_list' %}"
+        },
+
+        delConfirmText: "{% trans 'Are you sure want to remove ' %}"
+      };
+    },
+    computed: {
+      formTitle(item) {
+        return this.dialog.dEditedSlug === ""
+          ? "{% trans 'New ' %}" + this.table.tItem
+          : "{% trans 'Edit ' %}" + this.dialog.dEditedItem.name;
+      }
+    },
+    watch: {
+      dialog(val) {
+        val || this.close();
+      }
+    },
+    methods: {
+      initialize() {
+        window
+          .icGet("user_genre")
+          .then(res => {
+            this.table.tData = res;
+          })
+          .finally((this.table.tLoading = false));
+      },
+
+      gotoItem(from, item) {
+        window.icGoto(this.table.tItemUrl, item.slug);
+      },
+      addItem(from) {
+        // it doesn't add any item but redirects to all genres page
+        // in order to fav new ones
+        window.icGoto(this.page.pAllUrl);
+      },
+      favItem(from, item) {
+        // !!!
+        window.icDelete("user_genre", item.slug); // !!!
+        setTimeout(() => {
+          this.initialize();
+        }, 300);
+      }
+    },
+
+    created() {
+      this.initialize();
+    }
+  });
+</script>
+{% endblock %}

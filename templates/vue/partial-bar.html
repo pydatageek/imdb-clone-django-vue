@@ -1,0 +1,29 @@
+{% load i18n %}
+<v-app-bar color="grey darken-4" dark dense clipped-right app>
+  <v-toolbar-title>
+    <v-chip
+      class="ma-2"
+      color="orange"
+      text-color="black"
+      href="/"
+      label>
+    {% trans 'IMDB Clone' %}
+    </v-chip>
+  </v-toolbar-title>
+
+  <v-app-bar-nav-icon @click.prevent="drawer = !drawer"></v-app-bar-nav-icon>
+
+  <v-spacer class="hidden-xs-only"></v-spacer>
+  <v-text-field
+    v-model="search"
+    label="{% trans 'Search' %}"
+    prepend-inner-icon="mdi-magnify"
+    clearable
+    clear-icon="mdi-close-circle"
+    outlined
+    dense dark
+    class="mb-0 pt-4"
+  ></v-text-field>
+  <v-spacer class="hidden-xs-only"></v-spacer>
+  <v-spacer class="hidden-xs-only"></v-spacer>
+</v-app-bar>

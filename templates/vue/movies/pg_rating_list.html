@@ -1,0 +1,176 @@
+{% extends 'vue/celebs/index.html' %} {% load static i18n %} {% block content %}
+<ic-pg-rating></ic-pg-rating>
+{% endblock %}{% block extrascript %}
+<script>
+  Vue.component("ic-pg-rating", {
+    delimiters: ["[[", "]]"],
+    template: `
+      <div>
+        {% include 'vue/cp-title.html' %}
+
+        <div v-if="dialog.dDialog">
+          {% include 'vue/movies/pg_rating_form.html' %}
+        </div>
+
+        {% include 'vue/cp-data-table.html' %}
+      </div>
+    `,
+    data() {
+      return {
+        table: {
+          tData: [],
+          tLoading: true,
+          tSearch: "",
+          tHeaders: [{
+              text: "{% trans 'Name' %}",
+              value: "name"
+            },
+            {
+              text: "{% trans 'Code' %}",
+              value: "code"
+            },
+            // { text: "{% trans 'Slug' %}", value: "slug", align: " d-none" },
+            {
+              text: "{% trans 'Actions' %}",
+              value: "action",
+              sortable: false
+            }
+          ],
+          tTitle: "{% trans 'PG Ratings List' %}",
+          tItem: "{% trans 'PG Rating' %}",
+          tItemUrl: "{% url 'pg_rating_detail' 0  %}".slice(0, -2),
+          tSelected: []
+        },
+
+        page: {
+          pData: {},
+          pTitle: "{% trans 'PG Ratings' %}",
+          pUrl: "{% url 'pg_rating_list' %}"
+        },
+
+        dialog: {
+          dDialog: false,
+          dValid: false,
+
+          dEditedSlug: "",
+          dEditedItem: {
+            id: "",
+            name: "",
+            slug: "",
+            code: "",
+            inputRules: [
+              v => v.length > 0 || "{% trans 'Field is required' %}"
+            ],
+            nameRules: [
+              v => v.length <= 100 || "{% trans 'Max 100 characters!' %}",
+              v => v.length > 0 || "{% trans 'Field is required' %}"
+            ],
+            codeRules: [
+              v => v.length <= 5 || "{% trans 'Max 5 characters!' %}",
+              v => v.length > 0 || "{% trans 'Field is required' %}"
+            ],
+            contentRules: [
+              v => v.length <= 250 || "{% trans 'Max 250 characters!' %}"
+            ]
+          },
+          dDefaultItem: {
+            id: "",
+            name: "",
+            slug: "",
+            code: ""
+          }
+        },
+
+        include: {
+          titleToolbar: false,
+          buttonAll: false,
+          selectParent: false,
+          selectFromParent: false,
+          select: false,
+
+          titleRatingButton: false,
+          titleFavButton: false,
+          titleImageVideo: false,
+
+          isMovie: false,
+          isCeleb: false,
+        },
+
+        delConfirmText: "{% trans 'Are you sure want to remove ' %}",
+        cudButton: false,
+        isAdmin: true
+      };
+    },
+    computed: {
+      formTitle(item) {
+        return this.dialog.dEditedSlug === "" ?
+          "{% trans 'New ' %}" + this.table.tItem :
+          "{% trans 'Edit ' %}" + this.dialog.dEditedItem.name;
+      }
+    },
+    watch: {
+      dialog(val) {
+        val || this.close();
+      }
+    },
+    methods: {
+      initialize() {
+        window
+          .icGet("pg_rating")
+          .then(res => {
+            this.table.tData = res;
+          })
+          .finally((this.table.tLoading = false));
+      },
+
+      gotoItem(from, item) {
+        window.icGoto(this.table.tItemUrl, item.slug);
+      },
+      addItem(from) {
+        this.dialog.dDialog = true;
+        this.dialog.dEditedSlug = "";
+      },
+      editItem(from, item) {
+        this.dialog.dEditedSlug = item.slug;
+        this.dialog.dEditedItem = Object.assign({}, item);
+        this.dialog.dDialog = true;
+      },
+      deleteItem(from, item) {
+        if (confirm(this.delConfirmText + item.name + "?")) {
+          // !!!
+          window.icDelete("pg_rating", item.slug); // !!!
+          window.icGoto(this.page.pUrl);
+        }
+      },
+
+      saveItem() {
+        if (this.$refs.form.validate()) {
+          if (this.dialog.dEditedSlug === "") {
+            window.icPost("pg_rating", this.dialog.dEditedItem); // !!!
+          } else {
+            window.icPut(
+              "pg_rating", // !!!
+              this.dialog.dEditedItem,
+              this.dialog.dEditedSlug
+            );
+          }
+          this.closeDialog();
+        }
+      },
+      closeDialog() {
+        this.dialog.dDialog = false;
+        setTimeout(() => {
+          this.dialog.dEditedItem = Object.assign({}, this.dialog.dDefaultItem);
+          this.dialog.dEditedSlug = "";
+          this.dialog.dValid = false;
+          this.initialize();
+        }, 300);
+      }
+    },
+
+    created() {
+      this.initialize();
+    }
+  });
+</script>
+{% endblock %}

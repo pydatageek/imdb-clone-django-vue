@@ -1,0 +1,158 @@
+{% extends 'vue/celebs/index.html' %} {% load static i18n %} {% block content %}
+<ic-genre></ic-genre>
+{% endblock %}{% block extrascript %}
+<script>
+  Vue.component("ic-genre", {
+    delimiters: ["[[", "]]"],
+    template: `
+      <div>
+        {% include 'vue/cp-title.html' %}
+
+        <div v-if="dialog.dDialog">
+          {% include 'vue/movies/genre_form.html' %}
+        </div>
+
+          {% include 'vue/cp-data-table.html' %}
+        </div>
+    `,
+    data() {
+      return {
+        table: {
+          tData: [],
+          tLoading: true,
+          tSearch: "",
+          tHeaders: [{
+              text: "{% trans 'Name' %}",
+              value: "name"
+            },
+            {
+              text: "{% trans 'Actions' %}",
+              value: "action",
+              sortable: false
+            }
+          ],
+          tTitle: "{% trans 'Genres List' %}",
+          tItem: "{% trans 'Genre' %}",
+          tItemUrl: "{% url 'genre_detail' 0  %}".slice(0, -2),
+          tSelected: []
+        },
+
+        page: {
+          pData: {},
+          pTitle: "{% trans 'Genres' %}",
+          pUrl: "{% url 'genre_list' %}"
+        },
+
+        dialog: {
+          dDialog: false,
+          dValid: false,
+
+          dEditedSlug: "",
+          dEditedItem: {
+            id: "",
+            name: "",
+            slug: "",
+            content: "",
+            inputRules: [v => v.length > 0 || "{% trans 'Field is required' %}"]
+          },
+          dDefaultItem: {
+            id: "",
+            name: "",
+            slug: "",
+            content: ""
+          }
+        },
+
+        include: {
+          titleToolbar: false,
+          buttonAll: false,
+          selectParent: false,
+          selectFromParent: false,
+          select: false,
+
+          titleRatingButton: false,
+          titleFavButton: false,
+          titleImageVideo: false,
+
+          isMovie: false,
+          isCeleb: false,
+        },
+
+        delConfirmText: "{% trans 'Are you sure want to remove ' %}",
+        cudButton: false,
+        isAdmin: true
+      };
+    },
+    computed: {
+      formTitle(item) {
+        return this.dialog.dEditedSlug === "" ?
+          "{% trans 'New ' %}" + this.table.tItem :
+          "{% trans 'Edit ' %}" + this.dialog.dEditedItem.name;
+      }
+    },
+    watch: {
+      dialog(val) {
+        val || this.close();
+      }
+    },
+    methods: {
+      initialize() {
+        window
+          .icGet("genre")
+          .then(res => {
+            this.table.tData = res;
+          })
+          .finally((this.table.tLoading = false));
+      },
+
+      gotoItem(from, item) {
+        window.icGoto(this.table.tItemUrl, item.slug);
+      },
+      addItem(from) {
+        this.dialog.dDialog = true;
+        this.dialog.dEditedSlug = "";
+      },
+      editItem(from, item) {
+        this.dialog.dEditedSlug = item.slug;
+        this.dialog.dEditedItem = Object.assign({}, item);
+        this.dialog.dDialog = true;
+      },
+      deleteItem(from, item) {
+        if (confirm(this.delConfirmText + item.name + "?")) {
+          // !!!
+          window.icDelete("genre", item.slug); // !!!
+          window.icGoto(this.page.pUrl);
+        }
+      },
+
+      saveItem() {
+        if (this.$refs.form.validate()) {
+          if (this.dialog.dEditedSlug === "") {
+            window.icPost("genre", this.dialog.dEditedItem); // !!!
+          } else {
+            window.icPut(
+              "genre", // !!!
+              this.dialog.dEditedItem,
+              this.dialog.dEditedSlug
+            );
+          }
+          this.closeDialog();
+        }
+      },
+      closeDialog() {
+        this.dialog.dDialog = false;
+        setTimeout(() => {
+          this.dialog.dEditedItem = Object.assign({}, this.dialog.dDefaultItem);
+          this.dialog.dEditedSlug = "";
+          this.dialog.dValid = false;
+          this.initialize();
+        }, 300);
+      }
+    },
+
+    created() {
+      this.initialize();
+    }
+  });
+</script>
+{% endblock %}

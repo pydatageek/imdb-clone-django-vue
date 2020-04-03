@@ -1,0 +1,226 @@
+{% extends 'vue/movies/index.html' %} {% load static i18n %} {% block content %}
+<ic-movie></ic-movie>
+{% endblock %}{% block extrascript %}
+<script>
+  Vue.component("ic-movie", {
+    delimiters: ["[[", "]]"],
+    template: `
+      <div>
+        {% include 'vue/cp-title.html' %}
+
+        <div v-if="dialog.dDialog">
+          {% include 'vue/movies/movie_form.html' %}
+        </div>
+
+        {% include 'vue/cp-data-table.html' %}
+      </div>
+    `,
+    data() {
+      return {
+        table: {
+          tData: [],
+          tLoading: true,
+          tSearch: "",
+          tHeaders: [{
+              text: "{% trans 'Title' %}",
+              value: "name"
+            },
+            {
+              text: "{% trans 'Release Year' %}",
+              value: "release_year"
+            },
+            {
+              text: "{% trans 'Duration' %}",
+              value: "duration"
+            },
+            {
+              text: "{% trans 'IMDB Rating' %}",
+              value: "imdb_rating"
+            },
+            {
+              text: "{% trans 'Actions' %}",
+              value: "action",
+              sortable: false
+            }
+          ],
+          tTitle: "{% trans 'Movies List' %}",
+          tItem: "{% trans 'Movie' %}",
+          tItemUrl: "{% url 'movie_detail' 0  %}".slice(0, -2),
+          tSelected: []
+        },
+
+        page: {
+          pData: {},
+          pTitle: "{% trans 'Movies' %}",
+          pUrl: "{% url 'movie_list' %}"
+          // pItemApiUrl: "/api/v1/student/"
+        },
+
+        dialog: {
+          dDialog: false,
+          dValid: false,
+
+          dEditedSlug: "",
+          dEditedItem: {
+            id: "",
+            name: "",
+            slug: "",
+            release_year: "",
+            duration: "",
+            imdb_rating: "",
+            content: "",
+            source_content: "",
+            trailer: "",
+            image: "",
+            credit_image: "",
+            genres: [],
+            crews: [],
+            inputRules: [v => v.length > 0 || "{% trans 'Field is required' %}"]
+          },
+          dDefaultItem: {
+            id: "",
+            name: "",
+            slug: "",
+            release_year: "",
+            duration: "",
+            imdb_rating: "",
+            content: "",
+            source_content: "",
+            trailer: "",
+            image: "",
+            credit_image: "",
+            genres: [],
+            crews: []
+          }
+        },
+
+        list: {
+          lData: [],
+          lParentData: [],
+          lCrewData: [],
+          lGenreData: [],
+          lPgRatingData: []
+        },
+
+        include: {
+          titleToolbar: false,
+          buttonAll: false,
+          selectParent: false,
+          selectFromParent: false,
+          select: false,
+
+          titleRatingButton: false,
+          titleFavButton: false,
+          titleImageVideo: false,
+
+          isMovie: false,
+          isCeleb: false,
+        },
+
+        delConfirmText: "{% trans 'Are you sure want to remove ' %}",
+        cudButton: false,
+        isAdmin: true
+      };
+    },
+    computed: {
+      formTitle(item) {
+        return this.dialog.dEditedSlug === "" ?
+          "{% trans 'New ' %}" + this.table.tItem :
+          "{% trans 'Edit ' %}" + this.dialog.dEditedItem.name;
+      },
+    },
+    watch: {
+      dialog(val) {
+        val || this.close();
+      }
+    },
+    methods: {
+      initialize() {
+        window
+          .icGet("movie")
+          .then(res => {
+            this.table.tData = res;
+          })
+          .finally((this.table.tLoading = false));
+
+        this.getListCrew();
+        this.getListGenre();
+        this.getListPgRating();
+      },
+
+      gotoItem(from, item) {
+        window.icGoto(this.table.tItemUrl, item.slug);
+      },
+      addItem(from) {
+        this.dialog.dDialog = true;
+        this.dialog.dEditedSlug = "";
+      },
+      editItem(from, item) {
+        this.dialog.dEditedSlug = item.slug;
+        this.dialog.dEditedItem = Object.assign({}, item);
+        this.dialog.dDialog = true;
+      },
+      deleteItem(from, item) {
+        if (confirm(this.delConfirmText + item.name + "?")) {
+          window.icDelete("movie", item.slug);
+          window.icGoto(this.page.pUrl);
+        }
+      },
+
+      saveItem() {
+        if (this.$refs.form.validate()) {
+          if (this.dialog.dEditedSlug === "") {
+            window.icPost("movie", this.dialog.dEditedItem);
+          } else {
+            window.icPut(
+              "movie",
+              this.dialog.dEditedItem,
+              this.dialog.dEditedSlug
+            );
+          }
+          this.closeDialog();
+        }
+      },
+      closeDialog() {
+        this.dialog.dDialog = false;
+        setTimeout(() => {
+          this.dialog.dEditedItem = Object.assign({}, this.dialog.dDefaultItem);
+          this.dialog.dEditedSlug = "";
+          this.dialog.dValid = false;
+          this.initialize();
+        }, 300);
+      },
+
+      getListCrew() {
+        window.icGet("movie", this.page.pItemSlug, "crews").then(res => {
+          this.list.lCrewData = res;
+        });
+      },
+      getList(item) {
+        window
+          .icGet("genre", item, "movies") // !!!
+          .then(res => {
+            this.list.lData = res;
+          });
+      },
+      getListGenre(item) {
+        window.icGet("genre").then(res => {
+          // !!!
+          this.list.lGenreData = res;
+        });
+      },
+      getListPgRating(item) {
+        window
+          .icGet("pg_rating") // !!!
+          .then(res => {
+            this.list.lPgRatingData = res;
+          });
+      }
+    },
+
+    created() {
+      this.initialize();
+    }
+  });
+</script>
+{% endblock %}

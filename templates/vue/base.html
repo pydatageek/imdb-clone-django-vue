@@ -1,0 +1,167 @@
+{% load i18n static %}
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl" {% endif %}>
+
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet" />
+  <link href="{% static 'vue/ic.css' %}" rel="stylesheet">
+  {% block extrastyle %}{% endblock %}
+  {% block responsive %}
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
+  <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon" />
+  {% endblock %}
+  {% block extrahead %}{% endblock %}
+</head>
+{% load i18n %}
+
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
+  data-admin-utc-offset="{% now "Z" %}">
+
+  <noscript>{% trans 'Your browser does not support JavaScript!' %}</noscript>
+
+  <div id="app">
+    <!-- App.vue -->
+
+    <v-app>
+
+      {% include 'vue/partial-bar.html' %}
+
+      {% include 'vue/partial-drawer.html' %}
+
+      <!-- Sizes your content based upon application components -->
+      <v-content pt-0>
+
+        <!-- Provides the application the proper gutter -->
+        <v-container color="grey darken-3">
+          <v-row>
+            <v-col cols="12" sm="12" md="8">
+              {% block content %}{% endblock %}
+            </v-col>
+            <v-col cols="12" sm="12" md="4">
+              {% include 'vue/side.html' %}
+            </v-col>
+          </v-row>
+
+          <!-- If using vue-router -->
+          <!-- <router-view></router-view> -->
+        </v-container>
+      </v-content>
+
+      {% include 'vue/partial-footer.html' %}
+
+    </v-app>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <!-- <script src="https://unpkg.com/vuex"></script> -->
+  <!-- <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script src="{% static 'vue/functions.js' %}"></script>
+  {% block extrascript %}{% endblock %}
+  <script type="module">
+    var vm = new Vue({
+        delimiters: ["[[", "]]"],
+        el: "#app",
+        // router: router,
+        vuetify: new Vuetify(),
+        data: {
+          mainSearch: '',
+          // drawer related
+          drawer: false,
+          drawerItemGroup: true,
+          drawerItems: [
+            {
+              id: 100,
+              title: "{% trans 'Home' %}",
+              icon: "mdi-home-city",
+              to: "{% url 'home' %}"
+            },
+            {
+              id: 200,
+              title: "{% trans 'Movies' %}",
+              icon: "mdi-certificate",
+              to: "{% url 'movie_list' %}"
+            },
+            {
+              id: 300,
+              title: "{% trans 'Celebrities' %}",
+              icon: "mdi-certificate",
+              to: "{% url 'celeb_list' %}"
+            },
+            { id: 0, divider: true },
+            {
+              id: 400,
+              title: "{% trans 'Genres' %}",
+              icon: "mdi-certificate",
+              to: "{% url 'genre_list' %}"
+            },
+            {
+              id: 500,
+              title: "{% trans 'PG Ratings' %}",
+              icon: "mdi-certificate",
+              to: "{% url 'pg_rating_list' %}"
+            },
+            {
+              id: 600,
+              title: "{% trans 'Duties' %}",
+              icon: "mdi-certificate",
+              to: "{% url 'duty_list' %}"
+            },
+          ],
+          color: "amber darken-4",
+          right: true,
+          miniVariant: false,
+          expandOnHover: false,
+
+          search: '',
+
+          side: {
+            sMovie: [],
+            sCeleb: [],
+            sMovieUrl: "{% url 'movie_detail' 0  %}".slice(0, -2),
+            sCelebUrl: "{% url 'celeb_detail' 0  %}".slice(0, -2),
+          }
+        },
+
+        methods: {
+          baseInitialize() {
+            window.icGet("movie").then(res => {
+              this.side.sMovie = res;
+            });
+
+            window.icGet("celeb").then(res => {
+              this.side.sCeleb = res;
+            });
+          },
+          goto(url, item){
+            window.icGoto(url, item);
+          }
+        },
+
+        computed: {
+          randMovieList(){
+            var arr = this.side.sMovie;
+            arr = arr.slice(0, 100) // get the last 100 items
+            return arr.sort(() => .5 - Math.random()).slice(0,2);
+          },
+          randCelebList(){
+            var arr = this.side.sCeleb;
+            arr = arr.slice(0, 100) // get the last 100 items
+            return arr.sort(() => .5 - Math.random()).slice(0,2);
+          },
+        },
+
+        created() {
+          this.baseInitialize();
+        }
+      });
+    </script>
+</body>
+
+</html>

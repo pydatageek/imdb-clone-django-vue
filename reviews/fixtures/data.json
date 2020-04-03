@@ -1,0 +1,73 @@
+[{
+  "model": "reviews.moviecomment",
+  "pk": 1,
+  "fields": {
+    "added_date": "2020-03-22T22:13:44.930Z",
+    "added_by": 1,
+    "modified_date": "2020-03-22T22:13:44.930Z",
+    "modified_by": 1,
+    "slug": "qv3gsxm17t",
+    "text": "PK is an entertaining movie.",
+    "movie": 8
+  }
+}, {
+  "model": "reviews.moviecomment",
+  "pk": 2,
+  "fields": {
+    "added_date": "2020-03-22T22:15:41.217Z",
+    "added_by": 1,
+    "modified_date": "2020-03-22T22:15:41.217Z",
+    "modified_by": 1,
+    "slug": "wukap75hrr",
+    "text": "Dark Knight and Joker :|",
+    "movie": 3
+  }
+}, {
+  "model": "reviews.moviecomment",
+  "pk": 3,
+  "fields": {
+    "added_date": "2020-03-22T22:16:44.230Z",
+    "added_by": 1,
+    "modified_date": "2020-03-22T22:16:44.230Z",
+    "modified_by": 1,
+    "slug": "ke5g066tiv",
+    "text": "A prison and lives in it.",
+    "movie": 1
+  }
+}, {
+  "model": "reviews.moviecomment",
+  "pk": 4,
+  "fields": {
+    "added_date": "2020-03-22T22:18:17.253Z",
+    "added_by": 1,
+    "modified_date": "2020-03-22T22:18:17.253Z",
+    "modified_by": 1,
+    "slug": "aps46usdbx",
+    "text": "The second of the TOP List.",
+    "movie": 2
+  }
+}, {
+  "model": "reviews.celebcomment",
+  "pk": 1,
+  "fields": {
+    "added_date": "2020-03-22T22:18:43.878Z",
+    "added_by": 1,
+    "modified_date": "2020-03-22T22:18:43.878Z",
+    "modified_by": 1,
+    "slug": "26u67aknj3",
+    "text": "Writer of the Ice Age.",
+    "celeb": 1
+  }
+}, {
+  "model": "reviews.celebcomment",
+  "pk": 2,
+  "fields": {
+    "added_date": "2020-03-22T22:21:52.367Z",
+    "added_by": 1,
+    "modified_date": "2020-03-22T22:21:52.367Z",
+    "modified_by": 1,
+    "slug": "t0ho01lhln",
+    "text": "Don Vito Corleone and Marlon Brando: two legends!",
+    "celeb": 9
+  }
+}]

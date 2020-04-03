@@ -1,0 +1,17 @@
+<div class="side-outer">
+
+  <v-card class="mx-auto mb-5 mt-0" max-width="300" v-for="(movie, i) in randMovieList" :key="i+movie.slug"
+    @click.prevent="goto(side.sMovieUrl, movie.slug)">
+    <v-card-title>[[ movie.name ]]</v-card-title>
+    <v-img class="orange--text align-end" height="175px" :src="movie.image_thumbnail">
+    </v-img>
+  </v-card>
+
+  <v-card class="mx-auto mb-5" max-width="300" v-for="(celeb, i) in randCelebList" :key="i+celeb.slug"
+    @click.prevent="goto(side.sCelebUrl, celeb.slug)">
+    <v-card-title>[[ celeb.full_name ]]</v-card-title>
+    <v-img class="orange--text align-end" height="175px" :src="celeb.image_thumbnail">
+    </v-img>
+  </v-card>
+
+</div>

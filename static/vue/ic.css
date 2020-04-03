@@ -1,0 +1,99 @@
+.container {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.container>.main {
+  padding-top: 0;
+}
+
+.container>.row>.row>.col,
+.container>.row>.col-4,
+.container>.row>.col-8,
+.container>.row>.col-12,
+.container>.row>.col-sm-12,
+.container>.row>.col-md-8,
+.container>.row>.col-md-4,
+.container>.row>.col,
+.container>.row>.col-1,
+.container>.row>.col-2,
+.container>.row>.col-3,
+.container>.row>.col-4,
+.container>.row>.col-5,
+.container>.row>.col-6,
+.container>.row>.col-7,
+.container>.row>.col-8,
+.container>.row>.col-9,
+.container>.row>.col-10,
+.container>.row>.col-11,
+.container>.row>.col-12,
+.container>.row>.col-auto,
+.container>.row>.col-lg,
+.container>.row>.col-lg-1,
+.container>.row>.col-lg-2,
+.container>.row>.col-lg-3,
+.container>.row>.col-lg-4,
+.container>.row>.col-lg-5,
+.container>.row>.col-lg-6,
+.container>.row>.col-lg-7,
+.container>.row>.col-lg-8,
+.container>.row>.col-lg-9,
+.container>.row>.col-lg-10,
+.container>.row>.col-lg-11,
+.container>.row>.col-lg-12,
+.container>.row>.col-lg-auto,
+.container>.row>.col-md,
+.container>.row>.col-md-1,
+.container>.row>.col-md-2,
+.container>.row>.col-md-3,
+.container>.row>.col-md-4,
+.container>.row>.col-md-5,
+.container>.row>.col-md-6,
+.container>.row>.col-md-7,
+.container>.row>.col-md-8,
+.container>.row>.col-md-9,
+.container>.row>.col-md-10,
+.container>.row>.col-md-11,
+.container>.row>.col-md-12,
+.container>.row>.col-md-auto,
+.container>.row>.col-sm,
+.container>.row>.col-sm-1,
+.container>.row>.col-sm-2,
+.container>.row>.col-sm-3,
+.container>.row>.col-sm-4,
+.container>.row>.col-sm-5,
+.container>.row>.col-sm-6,
+.container>.row>.col-sm-7,
+.container>.row>.col-sm-8,
+.container>.row>.col-sm-9,
+.container>.row>.col-sm-10,
+.container>.row>.col-sm-11,
+.container>.row>.col-sm-12,
+.container>.row>.col-sm-auto,
+.container>.row>.col-xl,
+.container>.row>.col-xl-1,
+.container>.row>.col-xl-2,
+.container>.row>.col-xl-3,
+.container>.row>.col-xl-4,
+.container>.row>.col-xl-5,
+.container>.row>.col-xl-6,
+.container>.row>.col-xl-7,
+.container>.row>.col-xl-8,
+.container>.row>.col-xl-9,
+.container>.row>.col-xl-10,
+.container>.row>.col-xl-11,
+.container>.row>.col-xl-12,
+.container>.row>.col-xl-auto {
+  padding-top: 0;
+}
+
+.side-outer>.card.title {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.v-card__text,
+.v-card__title {
+  word-break: normal;
+  /* maybe !important  */
+}

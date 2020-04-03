@@ -1,0 +1,38 @@
+{% load i18n %}
+<template>
+  <v-row justify="center">
+    <v-dialog v-model="dialog.dDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
+      @keydown.esc="closeDialog">
+      <v-card>
+        <v-form v-model="dialog.dValid" ref="form">
+          <v-toolbar dark color="orange">
+            <v-btn icon dark @click="closeDialog">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+            <v-toolbar-title>[[ formTitle ]]</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-items>
+              <v-btn dark text @click="saveItem">Save</v-btn>
+            </v-toolbar-items>
+          </v-toolbar>
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col cols="12" sm="4">
+                  <v-text-field v-model="dialog.dEditedItem.code" label="{% trans 'Code' %}"
+                    :rules="dialog.dEditedItem.inputRules" @keydown.enter="saveItem" color="orange" required>
+                  </v-text-field>
+                </v-col>
+                <v-col cols="12" sm="8">
+                  <v-text-field v-model="dialog.dEditedItem.name" label="{% trans 'Name' %}"
+                    :rules="dialog.dEditedItem.inputRules" @keydown.enter="saveItem" color="orange" required>
+                  </v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+        </v-form>
+      </v-card>
+    </v-dialog>
+  </v-row>
+</template>

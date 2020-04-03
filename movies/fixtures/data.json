@@ -1,0 +1,1402 @@
+[{
+  "model": "movies.genre",
+  "pk": 1,
+  "fields": {
+    "added_date": "2020-03-21T15:37:55.836Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T15:37:55.836Z",
+    "modified_by": 1,
+    "name": "Action",
+    "slug": "action",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 2,
+  "fields": {
+    "added_date": "2020-03-21T16:09:25.020Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:09:25.020Z",
+    "modified_by": 1,
+    "name": "Adventure",
+    "slug": "adventure",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 3,
+  "fields": {
+    "added_date": "2020-03-21T16:09:31.110Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:09:31.110Z",
+    "modified_by": 1,
+    "name": "Animation",
+    "slug": "animation",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 4,
+  "fields": {
+    "added_date": "2020-03-21T16:09:36.679Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:09:36.679Z",
+    "modified_by": 1,
+    "name": "Biography",
+    "slug": "biography",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 5,
+  "fields": {
+    "added_date": "2020-03-21T16:09:42.997Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:09:42.997Z",
+    "modified_by": 1,
+    "name": "Comedy",
+    "slug": "comedy",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 6,
+  "fields": {
+    "added_date": "2020-03-21T16:09:47.562Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:09:47.562Z",
+    "modified_by": 1,
+    "name": "Crime",
+    "slug": "crime",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 7,
+  "fields": {
+    "added_date": "2020-03-21T16:09:56.567Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:09:56.567Z",
+    "modified_by": 1,
+    "name": "Documentary",
+    "slug": "documentary",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 8,
+  "fields": {
+    "added_date": "2020-03-21T16:10:01.218Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:10:01.218Z",
+    "modified_by": 1,
+    "name": "Drama",
+    "slug": "drama",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 9,
+  "fields": {
+    "added_date": "2020-03-21T16:10:05.662Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:10:05.662Z",
+    "modified_by": 1,
+    "name": "Family",
+    "slug": "family",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 10,
+  "fields": {
+    "added_date": "2020-03-21T16:10:10.611Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:10:10.611Z",
+    "modified_by": 1,
+    "name": "Fantasy",
+    "slug": "fantasy",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 11,
+  "fields": {
+    "added_date": "2020-03-21T16:10:15.788Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:10:15.788Z",
+    "modified_by": 1,
+    "name": "Film Noir",
+    "slug": "film-noir",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 12,
+  "fields": {
+    "added_date": "2020-03-21T16:10:20.287Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:10:20.287Z",
+    "modified_by": 1,
+    "name": "History",
+    "slug": "history",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 13,
+  "fields": {
+    "added_date": "2020-03-21T16:10:25.059Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:10:25.060Z",
+    "modified_by": 1,
+    "name": "Horror",
+    "slug": "horror",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 14,
+  "fields": {
+    "added_date": "2020-03-21T16:10:30.955Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:10:30.955Z",
+    "modified_by": 1,
+    "name": "Musical",
+    "slug": "musical",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 15,
+  "fields": {
+    "added_date": "2020-03-21T16:10:36.122Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:10:36.122Z",
+    "modified_by": 1,
+    "name": "Mystery",
+    "slug": "mystery",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 16,
+  "fields": {
+    "added_date": "2020-03-21T16:10:40.070Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:10:40.070Z",
+    "modified_by": 1,
+    "name": "Romance",
+    "slug": "romance",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 17,
+  "fields": {
+    "added_date": "2020-03-21T16:10:51.844Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:10:51.844Z",
+    "modified_by": 1,
+    "name": "Sci-Fi",
+    "slug": "sci-fi",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 18,
+  "fields": {
+    "added_date": "2020-03-21T16:10:57.767Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:10:57.768Z",
+    "modified_by": 1,
+    "name": "Short Film",
+    "slug": "short-film",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 19,
+  "fields": {
+    "added_date": "2020-03-21T16:11:04.602Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:11:04.602Z",
+    "modified_by": 1,
+    "name": "Superhero",
+    "slug": "superhero",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 20,
+  "fields": {
+    "added_date": "2020-03-21T16:11:12.445Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:11:12.445Z",
+    "modified_by": 1,
+    "name": "Thriller",
+    "slug": "thriller",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 21,
+  "fields": {
+    "added_date": "2020-03-21T16:11:17.353Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:11:17.353Z",
+    "modified_by": 1,
+    "name": "War",
+    "slug": "war",
+    "content": ""
+  }
+}, {
+  "model": "movies.genre",
+  "pk": 22,
+  "fields": {
+    "added_date": "2020-03-21T16:11:23.262Z",
+    "added_by": 1,
+    "modified_date": "2020-03-21T16:11:23.262Z",
+    "modified_by": 1,
+    "name": "Western",
+    "slug": "western",
+    "content": ""
+  }
+}, {
+  "model": "movies.pgrating",
+  "pk": 1,
+  "fields": {
+    "added_date": "2020-03-25T12:40:48.191Z",
+    "added_by": 1,
+    "modified_date": "2020-03-25T12:40:48.191Z",
+    "modified_by": 1,
+    "name": "General Audiences",
+    "slug": "general-audiences",
+    "code": "G",
+    "content": "All ages admitted. Nothing that would offend parents for viewing by children."
+  }
+}, {
+  "model": "movies.pgrating",
+  "pk": 2,
+  "fields": {
+    "added_date": "2020-03-25T12:41:08.429Z",
+    "added_by": 1,
+    "modified_date": "2020-03-25T12:41:08.429Z",
+    "modified_by": 1,
+    "name": "Parental Guidance Suggested",
+    "slug": "parental-guidance-suggested",
+    "code": "PG",
+    "content": "Some material may not be suitable for children. Parents urged to give \"parental guidance\". May contain some material parents might not like for their young children."
+  }
+}, {
+  "model": "movies.pgrating",
+  "pk": 3,
+  "fields": {
+    "added_date": "2020-03-25T12:41:27.224Z",
+    "added_by": 1,
+    "modified_date": "2020-03-25T12:41:27.224Z",
+    "modified_by": 1,
+    "name": "Parents Strongly Cautioned",
+    "slug": "parents-strongly-cautioned",
+    "code": "PG-13",
+    "content": "Some material may be inappropriate for children under 13. Parents are urged to be cautious. Some material may be inappropriate for pre-teenagers."
+  }
+}, {
+  "model": "movies.pgrating",
+  "pk": 4,
+  "fields": {
+    "added_date": "2020-03-25T12:41:41.484Z",
+    "added_by": 1,
+    "modified_date": "2020-03-25T12:41:41.484Z",
+    "modified_by": 1,
+    "name": "Restricted",
+    "slug": "restricted",
+    "code": "R",
+    "content": "Under 17 requires accompanying parent or adult guardian. Contains some adult material. Parents are urged to learn more about the film before taking their young children with them."
+  }
+}, {
+  "model": "movies.pgrating",
+  "pk": 5,
+  "fields": {
+    "added_date": "2020-03-25T12:42:01.853Z",
+    "added_by": 1,
+    "modified_date": "2020-03-25T12:42:01.853Z",
+    "modified_by": 1,
+    "name": "Adults Only",
+    "slug": "adults-only",
+    "code": "NC-17",
+    "content": "No One 17 and Under Admitted. Clearly adult. Children are not admitted."
+  }
+}, {
+  "model": "movies.pgrating",
+  "pk": 6,
+  "fields": {
+    "added_date": "2020-03-25T12:42:14.770Z",
+    "added_by": 1,
+    "modified_date": "2020-03-25T12:42:14.770Z",
+    "modified_by": 1,
+    "name": "Not Rated",
+    "slug": "not-rated",
+    "code": "NR",
+    "content": "This Film Is Not Yet Rated"
+  }
+}, {
+  "model": "movies.movie",
+  "pk": 1,
+  "fields": {
+    "added_date": "2020-03-22T08:39:18.772Z",
+    "added_by": 1,
+    "modified_date": "2020-03-25T13:38:06.699Z",
+    "modified_by": 1,
+    "name": "The Shawshank Redemption",
+    "slug": "the-shawshank-redemption-0fn40",
+    "release_year": "1994",
+    "duration": 142,
+    "imdb_rating": 9.3,
+    "content": "The Shawshank Redemption is a 1994 American drama film written and directed by Frank Darabont, based on the 1982 Stephen King novella Rita Hayworth and Shawshank Redemption. It tells the story of banker Andy Dufresne (Tim Robbins), who is sentenced to life in Shawshank State Penitentiary for the murders of his wife and her lover, despite his claims of innocence. Over the following two decades, he befriends a fellow prisoner, contraband smuggler Ellis \"Red\" Redding (Morgan Freeman), and becomes instrumental in a money-laundering operation led by the prison warden Samuel Norton (Bob Gunton). William Sadler, Clancy Brown, Gil Bellows, and James Whitmore appear in supporting roles.\r\n\r\nDarabont purchased the film rights to King's story in 1987, but development did not begin until five years later when he wrote the script over an eight-week period. Two weeks after submitting his script to Castle Rock Entertainment, Darabont secured a $25 million budget to produce The Shawshank Redemption, which started pre-production in January 1993. While the film is set in Maine, principal photography took place from June to August 1993 almost entirely in Mansfield, Ohio, with the Ohio State Reformatory serving as the eponymous penitentiary. The project attracted many stars of the time for the role of Andy, including Tom Hanks, Tom Cruise, and Kevin Costner. Thomas Newman provided the film's score.\r\n\r\nWhile The Shawshank Redemption received positive reviews on its release, particularly for its story and the performances of Robbins and Freeman, it was a box office disappointment, earning only $16 million during its initial theatrical run. Many reasons were cited for its failure at the time, including competition from films such as Pulp Fiction and Forrest Gump, to the general unpopularity of prison films, lack of female characters, and even the title, which was considered to be confusing for audiences. Even so, it went on to receive multiple award nominations, including seven Academy Award nominations, and a theatrical re-release that, combined with international takings, increased the film's box office gross to $58.3 million.\r\n\r\nOver 320,000 VHS copies were shipped throughout the United States, and based on its award nominations and word of mouth, it became one of the top rented films of 1995. The broadcast rights were acquired following the purchase of Castle Rock by Turner Broadcasting System, and it was shown regularly on the TNT network starting in 1997, further increasing its popularity. It is now considered by many to be one of the greatest films of the 1990s. As of 2017, the film is still broadcast regularly, and is popular in several countries, with audience members and celebrities citing it as a source of inspiration, and naming the film as a favorite in various surveys. In 2015, the United States Library of Congress selected the film for preservation in the National Film Registry, finding it \"culturally, historically, or aesthetically significant\".",
+    "source_content": "https://en.wikipedia.org/wiki/The_Shawshank_Redemption",
+    "trailer": "https://www.youtube.com/watch?v=NmzuHjWmXOc",
+    "image": "movies/1_the-shawshank-redemption-poster.jpg_h35y4",
+    "credit_image": "poster @imdb",
+    "pg_rating": 4,
+    "genres": [8]
+  }
+}, {
+  "model": "movies.movie",
+  "pk": 2,
+  "fields": {
+    "added_date": "2020-03-22T09:17:35.387Z",
+    "added_by": 1,
+    "modified_date": "2020-03-25T13:38:47.435Z",
+    "modified_by": 1,
+    "name": "The Godfather",
+    "slug": "the-godfather-zt2x7",
+    "release_year": "1972",
+    "duration": 175,
+    "imdb_rating": 9.2,
+    "content": "The Godfather is a 1972 American crime film directed by Francis Ford Coppola and produced by Albert S. Ruddy, based on Mario Puzo's best-selling novel of the same name. It stars Marlon Brando and Al Pacino as the leaders of a fictional New York crime family. The story, spanning 1945 to 1955, chronicles the family under the patriarch Vito Corleone (Brando), focusing on the transformation of Michael Corleone (Pacino) from reluctant family outsider to ruthless mafia boss.\r\n\r\nParamount Pictures obtained the rights to the novel for the price of $80,000, before it gained popularity.[3][4] Studio executives had trouble finding a director; their first few candidates turned down the position before Coppola signed on to direct the film. They and Coppola disagreed over who would play several characters, in particular, Vito and Michael. Filming took place primarily on location around New York and in Sicily, and was completed ahead of schedule. The musical score was principally composed by Nino Rota, with additional pieces by Carmine Coppola.\r\n\r\nThe film was the highest-grossing film of 1972,[5] and was for a time the highest-grossing film ever made,[4] with a gross of around $245\u2013286 million at the box office. The film received universal acclaim from critics and audiences, with praise going towards the performances of its cast, particularly from Brando and Pacino, the directing, screenplay, cinematography, editing, score, and portrayal of the mafia. The film revitalized Brando's career, which was in decline during the 1960s before going on to star in hits such as Last Tango in Paris, Superman, and Apocalypse Now, and launched the successful careers of Coppola, Pacino, and the rest of the cast. At the 45th Academy Awards, it won the Oscars for Best Picture, Best Actor (Brando) and Best Adapted Screenplay (for Puzo and Coppola). Its seven other Oscar nominations included Pacino, James Caan, Robert Duvall (Best Supporting Actor), and Coppola for Best Director.\r\n\r\nSince its release, The Godfather is widely regarded as one of the greatest and most influential films ever made, especially in the gangster genre.[6] It was selected for preservation in the U.S. National Film Registry of the Library of Congress in 1990, being deemed \"culturally, historically, or aesthetically significant\" and is ranked the second-greatest film in American cinema (behind Citizen Kane) by the American Film Institute. It was followed by sequels The Godfather Part II (1974) and The Godfather Part III (1990).",
+    "source_content": "https://en.wikipedia.org/wiki/The_Godfather",
+    "trailer": "https://www.youtube.com/watch?v=5DO-nDW43Ik",
+    "image": "movies/2_the-god-father-poster.jpg_wsu26",
+    "credit_image": "poster @imdb",
+    "pg_rating": 4,
+    "genres": [6, 8]
+  }
+}, {
+  "model": "movies.movie",
+  "pk": 3,
+  "fields": {
+    "added_date": "2020-03-22T09:18:54.427Z",
+    "added_by": 1,
+    "modified_date": "2020-03-25T13:35:25.299Z",
+    "modified_by": 1,
+    "name": "The Dark Knight",
+    "slug": "the-dark-knight-nz1g6",
+    "release_year": "2008",
+    "duration": 152,
+    "imdb_rating": 9.0,
+    "content": "The Dark Knight is a 2008 superhero film directed, co-produced, and co-written by Christopher Nolan. Based on the DC Comics character Batman, the film is the second installment of Nolan's The Dark Knight Trilogy and a sequel to 2005's Batman Begins, starring Christian Bale and supported by Michael Caine, Heath Ledger, Gary Oldman, Aaron Eckhart, Maggie Gyllenhaal, and Morgan Freeman. In the film, Bruce Wayne / Batman (Bale), Police Lieutenant James Gordon (Oldman) and District Attorney Harvey Dent (Eckhart) form an alliance to dismantle organized crime in Gotham City, but are menaced by an anarchistic mastermind known as the Joker (Ledger), who seeks to undermine Batman's influence and turn the city to chaos.\r\n\r\nNolan's inspiration for the film was the Joker's comic book debut in 1940, the 1988 graphic novel The Killing Joke, and the 1996 series The Long Halloween, which retold Harvey Dent's origin. The \"Dark Knight\" nickname was first applied to Batman in Batman #1 (1940), in a story written by Bill Finger.[4][5] The Dark Knight was filmed primarily in Chicago, as well as in several other locations in the United States, the United Kingdom, and Hong Kong. Nolan used IMAX 70 mm film cameras to film some sequences, including the Joker's first appearance in the film. Warner Bros. initially created a viral marketing campaign for The Dark Knight, developing promotional websites and trailers highlighting screenshots of Ledger as the Joker. Ledger died on January 22, 2008, some months after he completed filming and six months before the film's release from a toxic combination of prescription drugs, leading to intense attention from the press and movie-going public.\r\n\r\nA co-production of the United States and the United Kingdom, The Dark Knight was released on July 18, 2008 in the United States and on July 25, 2008 in the United Kingdom. Film critics considered it one of the best films of its decade and one of the best superhero films of all time;[6][7] the film received highly positive reviews, particularly for its action, score, screenplay, performances (particularly Ledger's), visual effects, and direction, setting numerous records during its theatrical run.[8] The Dark Knight appeared on 287 critics' top ten lists, more than any other film of 2008 with the exception of WALL-E, and more critics (77) named The Dark Knight the best film released that year.[9] With over $1 billion in revenue worldwide, it became the highest-grossing film of 2008 and is the 43rd highest-grossing film of all time, unadjusted for inflation (4th at the time of release); it also set the record for highest-grossing domestic opening with $158 million, a record it held for three years.[10] The film received eight Academy Award nominations; it won the award for Best Sound Editing and Ledger was posthumously awarded Best Supporting Actor.[11] In 2016 it was voted 33rd among 100 films considered the best of the 21st century by 117 film critics from around the world.[12] The Dark Knight Rises, the final film in the trilogy, was released on July 20, 2012.",
+    "source_content": "https://en.wikipedia.org/wiki/The_Dark_Knight_(film)",
+    "trailer": "https://www.youtube.com/watch?v=_PZpmTj1Q8Q",
+    "image": "movies/3_the-dark-knight-poster.jpg_z2ept",
+    "credit_image": "poster \u00a9 TM &DC Comics.2008 Warner Bros. Entertainment Inc.",
+    "pg_rating": 3,
+    "genres": [1, 6, 8]
+  }
+}, {
+  "model": "movies.movie",
+  "pk": 4,
+  "fields": {
+    "added_date": "2020-03-22T09:21:26.384Z",
+    "added_by": 1,
+    "modified_date": "2020-03-25T13:38:27.510Z",
+    "modified_by": 1,
+    "name": "The Silence of the Lambs",
+    "slug": "the-silence-of-the-lambs-t43li",
+    "release_year": "1991",
+    "duration": 118,
+    "imdb_rating": 8.6,
+    "content": "The Silence of the Lambs is a 1991 American neo-noir[3] psychological thriller film[4] directed by Jonathan Demme from a screenplay written by Ted Tally, adapted from Thomas Harris's 1988 novel of the same name. The film stars Jodie Foster, Anthony Hopkins, Scott Glenn, Ted Levine, and Anthony Heald.[5] In the film, Clarice Starling, a young FBI trainee, seeks the advice of the imprisoned Dr. Hannibal Lecter, a brilliant psychiatrist and cannibalistic serial killer to apprehend another serial killer, known only as \"Buffalo Bill\", who skins his female victims' corpses. The novel was Harris's first and second respectively to feature the characters of Starling and Lecter, and was the second adaptation of a Harris novel to feature Lecter, preceded by the Michael Mann-directed Manhunter (1986).\r\n\r\nThe Silence of the Lambs was released on February 14, 1991 and grossed $272.7 million worldwide against its $19 million budget, becoming the fifth-highest grossing film of 1991 worldwide. The film premiered at the 41st Berlin International Film Festival, where it competed for the Golden Bear, while Demme received the Silver Bear for Best Director. Critically acclaimed upon release, it became only the third film (the other two being It Happened One Night (1934) and One Flew Over the Cuckoo's Nest (1975)) to win Academy Awards in all the top five categories: Best Picture, Best Director, Best Actor, Best Actress, and Best Adapted Screenplay. It is also the first (and so far only) Best Picture winner widely considered to be a horror film, and one of only six such films to be nominated in the category, along with The Exorcist (1973), Jaws (1975), The Sixth Sense (1999), Black Swan (2010) and Get Out (2017).[6]",
+    "source_content": "https://en.wikipedia.org/wiki/The_Silence_of_the_Lambs_(film)",
+    "trailer": "https://www.youtube.com/watch?v=lQKs169Sl0I",
+    "image": "movies/4_the-silence-of-the-lambs-poster.jpg_hb30x",
+    "credit_image": "poster @imdb",
+    "pg_rating": 4,
+    "genres": [6, 8, 20]
+  }
+}, {
+  "model": "movies.movie",
+  "pk": 5,
+  "fields": {
+    "added_date": "2020-03-22T09:46:13.763Z",
+    "added_by": 1,
+    "modified_date": "2020-03-25T13:37:44.825Z",
+    "modified_by": 1,
+    "name": "The Matrix",
+    "slug": "the-matrix-utyx9",
+    "release_year": "1999",
+    "duration": 136,
+    "imdb_rating": 8.7,
+    "content": "The Matrix is a 1999 science fiction action film[3][4] written and directed by the Wachowskis[a] that stars Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving, and Joe Pantoliano and the first installment in the Matrix franchise. It depicts a dystopian future in which humanity is unknowingly trapped inside a simulated reality, the Matrix, created by thought-capable machines (artificial beings)[b] to distract humans while using their bodies as an energy source.[5] When computer programmer Thomas Anderson, under the hacker alias \"Neo\", uncovers the truth, he \"is drawn into a rebellion against the machines\"[5] along with other people who have been freed from the Matrix.\r\n\r\nThe Matrix is an example of the cyberpunk subgenre of science fiction.[6] The Wachowskis' approach to action scenes was influenced by Japanese animation[7] and martial arts films, and the film's use of fight choreographers and wire fu techniques from Hong Kong action cinema influenced subsequent Hollywood action film productions. The film is known for popularizing a visual effect known as \"bullet time\", where the heightened perception of certain characters is represented by allowing the action within a shot to progress in slow-motion while the camera appears to move through the scene at normal speed, allowing the sped-up movements of certain characters to be perceived normally. While some critics have praised the film for its handling of difficult subjects, others have said the deeper themes are largely overshadowed by its action scenes.[8]\r\n\r\nThe Matrix was first released in the United States on March 31, 1999, and grossed over $460 million worldwide. It was well-received by many critics[9][10] and won four Academy Awards, as well as other accolades, including BAFTA Awards and Saturn Awards. The Matrix was praised for its innovative visual effects, cinematography and entertainment value. The film has since appeared in lists of the greatest science fiction films,[8][11][12] and was added to the National Film Registry for preservation in 2012.[13] The success of the film led to the release of two feature film sequels in 2003, The Matrix Reloaded and The Matrix Revolutions, which were also written and directed by the Wachowskis, with an upcoming fourth movie also in development. The Matrix franchise was further expanded, with the Wachowskis being heavily involved, through the production of comic books, video games and animated short films. The Matrix franchise has even inspired books and theories expanding on some of the religious and philosophical ideas alluded to in the movies.",
+    "source_content": "https://en.wikipedia.org/wiki/The_Matrix",
+    "trailer": "https://www.youtube.com/watch?v=D4eJx-0g3Do",
+    "image": "movies/5_the-matrix-poster.jpg_stydi",
+    "credit_image": "poster @imdb",
+    "pg_rating": 4,
+    "genres": [1, 17]
+  }
+}, {
+  "model": "movies.movie",
+  "pk": 6,
+  "fields": {
+    "added_date": "2020-03-22T09:49:27.362Z",
+    "added_by": 1,
+    "modified_date": "2020-03-25T13:37:01.256Z",
+    "modified_by": 1,
+    "name": "Memento",
+    "slug": "memento-98haz",
+    "release_year": "2000",
+    "duration": 113,
+    "imdb_rating": 8.4,
+    "content": "Memento is a 2000 American neo-noir[4][5] psychological thriller film written and directed by Christopher Nolan, and produced by Suzanne and Jennifer Todd. The film's script was based on a pitch by Jonathan Nolan, who later wrote the story \"Memento Mori\" from the concept. Guy Pearce stars as a man who, as a result of a past trauma, has anterograde amnesia (the inability to form new memories) and has short-term memory loss approximately every five minutes. He is searching for the persons who attacked him and killed his wife, using an intricate system of Polaroid photographs and tattoos to track information he cannot remember.\r\n\r\nMemento is presented as two different sequences of scenes interspersed during the film: a series in black-and-white that is shown chronologically, and a series of color sequences shown in reverse order (simulating for the audience the mental state of the protagonist). The two sequences meet at the end of the film, producing one complete and cohesive narrative.[6]\r\n\r\nMemento premiered at the 57th Venice International Film Festival on September 5, 2000, and was released in the United States on March 16, 2001. It was acclaimed by critics, who praised its nonlinear narrative structure and motifs of memory, perception, grief, and self-deception, and earned $39.7 million over a $4.5 million budget. It received numerous accolades, including Oscar nominations for Best Original Screenplay and Best Film Editing.[7] The film was subsequently ranked one of the best films of the 2000s by several critics and media outlets.[8] In 2016, it was voted 25th among 100 films considered the best of the 21st century by 117 film critics from around the world.[9] Memento was considered \"culturally, historically or aesthetically significant\" by the US Library of Congress and was selected for preservation in the National Film Registry in 2017, the first narrative feature of the 2000s to be honored.[10]",
+    "source_content": "https://en.wikipedia.org/wiki/Memento_(film)",
+    "trailer": "https://www.youtube.com/watch?v=E77LfnMI-34",
+    "image": "movies/6_memento-poster.jpg_ntbvs",
+    "credit_image": "poster @imdb",
+    "pg_rating": 4,
+    "genres": [15, 20]
+  }
+}, {
+  "model": "movies.movie",
+  "pk": 7,
+  "fields": {
+    "added_date": "2020-03-22T09:51:49.709Z",
+    "added_by": 1,
+    "modified_date": "2020-03-25T13:36:03.280Z",
+    "modified_by": 1,
+    "name": "The Pursuit of Happyness",
+    "slug": "the-pursuit-of-happyness-w5ybk",
+    "release_year": "2006",
+    "duration": 117,
+    "imdb_rating": 8.0,
+    "content": "The Pursuit of Happyness is a 2006 American autobiographical drama film based on entrepreneur Chris Gardner's nearly one-year struggle being homeless. The plot is based on a true story, yet some scenes were modified and added to the real story.[2] Directed by Gabriele Muccino, the film features Will Smith as Gardner, a homeless salesman. Smith's son Jaden Smith co-stars, making his film debut as Gardner's son, Christopher Jr.\r\n\r\nThe screenplay by Steven Conrad is based on the best-selling memoir of the same name written by Gardner with Quincy Troupe. The film was released on December 15, 2006 by Columbia Pictures. For his performance, Smith was nominated for an Academy Award and a Golden Globe for Best Actor.[3]\r\n\r\nThe unusual spelling of the film's title comes from a mural that Gardner sees on the wall outside the daycare facility his son attends. He complains to the owner of the daycare that \"happiness\" is incorrectly spelled as \"happyness\" and needs to be changed.",
+    "source_content": "https://en.wikipedia.org/wiki/The_Pursuit_of_Happyness",
+    "trailer": "https://www.youtube.com/watch?v=89Kq8SDyvfg",
+    "image": "movies/7_the-pursuit-of-happyness-poster.jpg_86p8k",
+    "credit_image": "poster @imdb",
+    "pg_rating": 3,
+    "genres": [4, 8]
+  }
+}, {
+  "model": "movies.movie",
+  "pk": 8,
+  "fields": {
+    "added_date": "2020-03-22T09:56:53.016Z",
+    "added_by": 1,
+    "modified_date": "2020-03-25T13:34:39.922Z",
+    "modified_by": 1,
+    "name": "PK",
+    "slug": "pk-g4g91",
+    "release_year": "2014",
+    "duration": 153,
+    "imdb_rating": 8.2,
+    "content": "PK (transl.\u2009Tipsy; Hindi pronunciation: [piakar]) is a 2014 Indian satirical comedy-drama[c] film directed by Rajkumar Hirani and written by Hirani and Abhijat Joshi. It was jointly produced by Hirani and Vidhu Vinod Chopra under the banners Rajkumar Hirani Films and Vinod Chopra Films respectively. The film follows an alien who comes to Earth on a research mission, but loses his remote to a thief, who later sells it to a godman. He befriends a television journalist and in his quest to retrieve the remote, questions religious dogmas and superstitions. The film stars Aamir Khan in the titular role with Anushka Sharma, Sushant Singh Rajput, Boman Irani, Saurabh Shukla and Sanjay Dutt in pivotal roles.\r\n\r\nAfter the success of 3 Idiots (2009), Hirani and Joshi's began scripting their next project; finding similarities with the plot of Inception (2010), they scrapped the film. It was later rewritten with a different angle and tone. During production, the film was first titled Talli and later Ek Tha Talli before being changed to PK as the latter title was found too similar to Ek Tha Tiger (2012). The film's soundtrack was composed by Shantanu Moitra, Ajay\u2212Atul and Ankit Tiwari with lyrics written by Swanand Kirkire, Amitabh Varma and Manoj Muntashir. UTV Motion Pictures acquired the distribution rights of the film.\r\n\r\nPK was released on 19 December 2014. It received generally positive reviews from critics, with praise directed towards the performances, particularly Khan, and its portrayal of superstitions. Criticism was focused on the Anti-Hindu sentiment. The film received eight nominations at the 60th Filmfare Awards, winning two. Additionally, it won five Producers Guild Film Awards, and two Screen Awards. PK garnered the Telstra People's Choice Award at the Indian Film Festival of Melbourne.\r\n\r\nProduced on a budget of \u20b9850 million (approx. $12 million), PK was the first Indian film to gross more than \u20b97 billion and US$100 million worldwide. At the time, it emerged as the highest-grossing Indian film of all time, and ranks as the 70th highest-grossing film of 2014 worldwide. The film's final worldwide gross was \u20b9854 crore (US$140 million). It currently stands as the 5th highest grossing Indian film worldwide and 5th highest-grossing film in India.",
+    "source_content": "https://en.wikipedia.org/wiki/PK_(film)",
+    "trailer": "https://www.youtube.com/watch?v=SOXWc32k4zA",
+    "image": "movies/8_pk-poster.jpg_8rgr6",
+    "credit_image": "poster @imdb",
+    "pg_rating": 6,
+    "genres": [5, 8, 10]
+  }
+}, {
+  "model": "movies.movie",
+  "pk": 9,
+  "fields": {
+    "added_date": "2020-03-22T09:59:28.222Z",
+    "added_by": 1,
+    "modified_date": "2020-03-25T13:36:47.828Z",
+    "modified_by": 1,
+    "name": "Ice Age",
+    "slug": "ice-age-i4y8r",
+    "release_year": "2002",
+    "duration": 81,
+    "imdb_rating": 7.5,
+    "content": "Ice Age is a 2002 American computer-animated comedy film directed by Chris Wedge and co-directed by Carlos Saldanha from a story by Michael J. Wilson. Produced by Blue Sky Studios as its first feature film, it was released by 20th Century Fox on March 15, 2002. The film features the voices of Ray Romano, John Leguizamo, and Denis Leary. Set during the days of the ice age, the film centers around three main characters - Manny (Romano), a no-nonsense woolly mammoth; Sid (Leguizamo), a loudmouthed ground sloth; and Diego (Leary), a sardonic saber-tooth tiger - who come across a human baby and work together to return it to its tribe. Additionally, the film occasionally follows Scrat, a speechless \"saber-toothed squirrel\" voiced by Wedge who is perpetually searching for a place in the ground to bury his acorn.\r\n\r\nIce Age was originally intended as a 2D animated movie developed by Fox Animation Studios, but eventually became the first full-length animated movie for the newly-reformed Blue Sky, which had been reshaped from a special FX house to a CG animation studio. Focus shifted from making an action-adventure drama film to a more comedy-oriented one, and several writers, such as Michael Berg and Peter Ackerman, were brought on to bring out a wittier tone.\r\n\r\nUpon release, Ice Age was met with mostly positive reviews and was nominated at the 75th Academy Awards for Best Animated Feature, losing to Spirited Away. It was a box office success by grossing over $383 million, starting the Ice Age franchise. It was followed by four sequels, Ice Age: The Meltdown in 2006, Ice Age: Dawn of the Dinosaurs in 2009, Ice Age: Continental Drift in 2012, and Ice Age: Collision Course in 2016.",
+    "source_content": "https://en.wikipedia.org/wiki/Ice_Age_(2002_film)",
+    "trailer": "https://www.youtube.com/watch?v=wjdqn9r4thg",
+    "image": "movies/9_ice-age-poster.jpg_tlyw1",
+    "credit_image": "poster @imdb",
+    "pg_rating": 2,
+    "genres": [2, 3, 5]
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 1,
+  "fields": {
+    "duty": 2,
+    "movie": 1,
+    "crew": 18,
+    "role": "",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 2,
+  "fields": {
+    "duty": 3,
+    "movie": 1,
+    "crew": 45,
+    "role": "short story \"Rita Hayworth and Shawshank Redemption\"",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 3,
+  "fields": {
+    "duty": 3,
+    "movie": 1,
+    "crew": 18,
+    "role": "screenplay",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 4,
+  "fields": {
+    "duty": 1,
+    "movie": 1,
+    "crew": 65,
+    "role": "",
+    "screen_name": "Andy Dufresne"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 5,
+  "fields": {
+    "duty": 1,
+    "movie": 1,
+    "crew": 30,
+    "role": "",
+    "screen_name": "Ellis Boyd 'Red' Redding"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 6,
+  "fields": {
+    "duty": 1,
+    "movie": 1,
+    "crew": 34,
+    "role": "",
+    "screen_name": "Warden Norton"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 7,
+  "fields": {
+    "duty": 1,
+    "movie": 1,
+    "crew": 68,
+    "role": "",
+    "screen_name": "Heywood"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 8,
+  "fields": {
+    "duty": 1,
+    "movie": 1,
+    "crew": 10,
+    "role": "",
+    "screen_name": "Captain Hadley"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 9,
+  "fields": {
+    "duty": 1,
+    "movie": 1,
+    "crew": 3,
+    "role": "",
+    "screen_name": "Tommy"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 10,
+  "fields": {
+    "duty": 1,
+    "movie": 1,
+    "crew": 66,
+    "role": "",
+    "screen_name": "Bogs Diamond"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 11,
+  "fields": {
+    "duty": 1,
+    "movie": 1,
+    "crew": 81,
+    "role": "",
+    "screen_name": "Brooks Hatlen"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 12,
+  "fields": {
+    "duty": 1,
+    "movie": 1,
+    "crew": 19,
+    "role": "",
+    "screen_name": "1946 D.A."
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 13,
+  "fields": {
+    "duty": 1,
+    "movie": 1,
+    "crew": 8,
+    "role": "",
+    "screen_name": "Skeet"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 14,
+  "fields": {
+    "duty": 1,
+    "movie": 1,
+    "crew": 31,
+    "role": "",
+    "screen_name": "Jigger"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 15,
+  "fields": {
+    "duty": 1,
+    "movie": 1,
+    "crew": 50,
+    "role": "",
+    "screen_name": "Floyd"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 16,
+  "fields": {
+    "duty": 1,
+    "movie": 1,
+    "crew": 84,
+    "role": "",
+    "screen_name": "Snooze"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 17,
+  "fields": {
+    "duty": 1,
+    "movie": 1,
+    "crew": 62,
+    "role": "",
+    "screen_name": "Ernie"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 18,
+  "fields": {
+    "duty": 1,
+    "movie": 1,
+    "crew": 15,
+    "role": "",
+    "screen_name": "Guard Mert"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 19,
+  "fields": {
+    "duty": 2,
+    "movie": 2,
+    "crew": 17,
+    "role": "",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 20,
+  "fields": {
+    "duty": 3,
+    "movie": 2,
+    "crew": 61,
+    "role": "screenplay",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 21,
+  "fields": {
+    "duty": 3,
+    "movie": 2,
+    "crew": 17,
+    "role": "screenplay",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 22,
+  "fields": {
+    "duty": 1,
+    "movie": 2,
+    "crew": 9,
+    "role": "",
+    "screen_name": "Don Vito Corleone"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 23,
+  "fields": {
+    "duty": 1,
+    "movie": 2,
+    "crew": 58,
+    "role": "",
+    "screen_name": "Michael Corleone"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 24,
+  "fields": {
+    "duty": 1,
+    "movie": 2,
+    "crew": 11,
+    "role": "",
+    "screen_name": "Sonny Corleone"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 25,
+  "fields": {
+    "duty": 1,
+    "movie": 2,
+    "crew": 14,
+    "role": "",
+    "screen_name": "Clemenza (as Richard Castellano)"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 26,
+  "fields": {
+    "duty": 1,
+    "movie": 2,
+    "crew": 23,
+    "role": "",
+    "screen_name": "Tom Hagen"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 27,
+  "fields": {
+    "duty": 2,
+    "movie": 3,
+    "crew": 56,
+    "role": "",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 28,
+  "fields": {
+    "duty": 3,
+    "movie": 3,
+    "crew": 57,
+    "role": "screenplay",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 29,
+  "fields": {
+    "duty": 3,
+    "movie": 3,
+    "crew": 56,
+    "role": "screenplay",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 30,
+  "fields": {
+    "duty": 1,
+    "movie": 3,
+    "crew": 2,
+    "role": "",
+    "screen_name": "Bruce Wayne"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 31,
+  "fields": {
+    "duty": 1,
+    "movie": 3,
+    "crew": 47,
+    "role": "",
+    "screen_name": "Joker"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 32,
+  "fields": {
+    "duty": 1,
+    "movie": 3,
+    "crew": 24,
+    "role": "",
+    "screen_name": "Harvey Dent"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 33,
+  "fields": {
+    "duty": 1,
+    "movie": 3,
+    "crew": 12,
+    "role": "",
+    "screen_name": "Alfred"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 34,
+  "fields": {
+    "duty": 2,
+    "movie": 4,
+    "crew": 20,
+    "role": "",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 35,
+  "fields": {
+    "duty": 3,
+    "movie": 4,
+    "crew": 36,
+    "role": "novel",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 36,
+  "fields": {
+    "duty": 3,
+    "movie": 4,
+    "crew": 74,
+    "role": "screenplay",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 37,
+  "fields": {
+    "duty": 1,
+    "movie": 4,
+    "crew": 28,
+    "role": "",
+    "screen_name": "Clarice Starling"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 38,
+  "fields": {
+    "duty": 1,
+    "movie": 4,
+    "crew": 38,
+    "role": "",
+    "screen_name": "Dr. Hannibal Lecter"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 39,
+  "fields": {
+    "duty": 1,
+    "movie": 4,
+    "crew": 6,
+    "role": "",
+    "screen_name": "FBI Instructor"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 40,
+  "fields": {
+    "duty": 1,
+    "movie": 4,
+    "crew": 49,
+    "role": "",
+    "screen_name": "Ardelia Mapp"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 41,
+  "fields": {
+    "duty": 1,
+    "movie": 4,
+    "crew": 32,
+    "role": "",
+    "screen_name": "Jack Crawford"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 42,
+  "fields": {
+    "duty": 2,
+    "movie": 5,
+    "crew": 76,
+    "role": "The Wachowski Brothers",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 43,
+  "fields": {
+    "duty": 2,
+    "movie": 5,
+    "crew": 77,
+    "role": "The Wachowski Brothers",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 44,
+  "fields": {
+    "duty": 3,
+    "movie": 5,
+    "crew": 77,
+    "role": "The Wachowski Brothers",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 45,
+  "fields": {
+    "duty": 3,
+    "movie": 5,
+    "crew": 76,
+    "role": "The Wachowski Brothers",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 46,
+  "fields": {
+    "duty": 1,
+    "movie": 5,
+    "crew": 64,
+    "role": "",
+    "screen_name": "Neo"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 47,
+  "fields": {
+    "duty": 1,
+    "movie": 5,
+    "crew": 26,
+    "role": "",
+    "screen_name": "Morpheus"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 48,
+  "fields": {
+    "duty": 1,
+    "movie": 5,
+    "crew": 53,
+    "role": "",
+    "screen_name": "Trinity"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 49,
+  "fields": {
+    "duty": 1,
+    "movie": 5,
+    "crew": 78,
+    "role": "",
+    "screen_name": "Agent Smith"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 50,
+  "fields": {
+    "duty": 1,
+    "movie": 5,
+    "crew": 27,
+    "role": "",
+    "screen_name": "Oracle"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 51,
+  "fields": {
+    "duty": 2,
+    "movie": 6,
+    "crew": 56,
+    "role": "",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 52,
+  "fields": {
+    "duty": 3,
+    "movie": 6,
+    "crew": 56,
+    "role": "screenplay",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 53,
+  "fields": {
+    "duty": 3,
+    "movie": 6,
+    "crew": 57,
+    "role": "short story \"Memento Mori\"",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 54,
+  "fields": {
+    "duty": 1,
+    "movie": 6,
+    "crew": 60,
+    "role": "",
+    "screen_name": "Leonard"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 55,
+  "fields": {
+    "duty": 1,
+    "movie": 6,
+    "crew": 53,
+    "role": "",
+    "screen_name": "Natalie"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 56,
+  "fields": {
+    "duty": 1,
+    "movie": 6,
+    "crew": 59,
+    "role": "",
+    "screen_name": "Teddy"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 57,
+  "fields": {
+    "duty": 1,
+    "movie": 6,
+    "crew": 7,
+    "role": "",
+    "screen_name": "Burt"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 58,
+  "fields": {
+    "duty": 1,
+    "movie": 6,
+    "crew": 25,
+    "role": "",
+    "screen_name": "Waiter"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 59,
+  "fields": {
+    "duty": 1,
+    "movie": 6,
+    "crew": 29,
+    "role": "",
+    "screen_name": "Leonard's Wife"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 60,
+  "fields": {
+    "duty": 2,
+    "movie": 7,
+    "crew": 54,
+    "role": "",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 61,
+  "fields": {
+    "duty": 3,
+    "movie": 7,
+    "crew": 16,
+    "role": "Steven Conrad",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 62,
+  "fields": {
+    "duty": 1,
+    "movie": 7,
+    "crew": 73,
+    "role": "",
+    "screen_name": "Chris Gardner"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 63,
+  "fields": {
+    "duty": 1,
+    "movie": 7,
+    "crew": 72,
+    "role": "",
+    "screen_name": "Christopher"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 64,
+  "fields": {
+    "duty": 1,
+    "movie": 7,
+    "crew": 55,
+    "role": "",
+    "screen_name": "Linda"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 65,
+  "fields": {
+    "duty": 1,
+    "movie": 7,
+    "crew": 39,
+    "role": "",
+    "screen_name": "Jay Twistle"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 66,
+  "fields": {
+    "duty": 1,
+    "movie": 7,
+    "crew": 42,
+    "role": "",
+    "screen_name": "Martin Frohm"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 67,
+  "fields": {
+    "duty": 1,
+    "movie": 7,
+    "crew": 13,
+    "role": "",
+    "screen_name": "Alan Frakesh"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 68,
+  "fields": {
+    "duty": 2,
+    "movie": 8,
+    "crew": 37,
+    "role": "",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 69,
+  "fields": {
+    "duty": 3,
+    "movie": 8,
+    "crew": 37,
+    "role": "",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 70,
+  "fields": {
+    "duty": 3,
+    "movie": 8,
+    "crew": 41,
+    "role": "",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 71,
+  "fields": {
+    "duty": 1,
+    "movie": 8,
+    "crew": 44,
+    "role": "P.K.",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 72,
+  "fields": {
+    "duty": 1,
+    "movie": 8,
+    "crew": 70,
+    "role": "Jagat Janani / Jaggu",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 73,
+  "fields": {
+    "duty": 1,
+    "movie": 8,
+    "crew": 71,
+    "role": "Tapasvi Maharaj",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 74,
+  "fields": {
+    "duty": 1,
+    "movie": 8,
+    "crew": 22,
+    "role": "Bhairon Singh",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 75,
+  "fields": {
+    "duty": 1,
+    "movie": 8,
+    "crew": 40,
+    "role": "Cherry Bajwa",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 76,
+  "fields": {
+    "duty": 1,
+    "movie": 8,
+    "crew": 63,
+    "role": "Sarfraz Yousuf",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 77,
+  "fields": {
+    "duty": 2,
+    "movie": 9,
+    "crew": 79,
+    "role": "",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 78,
+  "fields": {
+    "duty": 2,
+    "movie": 9,
+    "crew": 69,
+    "role": "co-director",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 79,
+  "fields": {
+    "duty": 3,
+    "movie": 9,
+    "crew": 82,
+    "role": "story, screenplay",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 80,
+  "fields": {
+    "duty": 3,
+    "movie": 9,
+    "crew": 4,
+    "role": "screenplay",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 81,
+  "fields": {
+    "duty": 3,
+    "movie": 9,
+    "crew": 1,
+    "role": "screenplay",
+    "screen_name": ""
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 82,
+  "fields": {
+    "duty": 1,
+    "movie": 9,
+    "crew": 67,
+    "role": "voice",
+    "screen_name": "Manfred"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 83,
+  "fields": {
+    "duty": 1,
+    "movie": 9,
+    "crew": 48,
+    "role": "voice",
+    "screen_name": "Sid"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 84,
+  "fields": {
+    "duty": 1,
+    "movie": 9,
+    "crew": 46,
+    "role": "voice",
+    "screen_name": "Diego"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 85,
+  "fields": {
+    "duty": 1,
+    "movie": 9,
+    "crew": 75,
+    "role": "voice",
+    "screen_name": "Soto"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 86,
+  "fields": {
+    "duty": 1,
+    "movie": 9,
+    "crew": 5,
+    "role": "voice",
+    "screen_name": "Zeke"
+  }
+}, {
+  "model": "movies.moviecrew",
+  "pk": 87,
+  "fields": {
+    "duty": 1,
+    "movie": 9,
+    "crew": 83,
+    "role": "voice",
+    "screen_name": "Carl"
+  }
+}]

@@ -1,0 +1,84 @@
+{% load i18n %}
+<v-card>
+  <v-data-table :search="table.tSearch" :headers="table.tHeaders" :items="table.tData" :loading="table.tLoading"
+    loading-text="{% trans 'Loading...' %}" no-data-text="{% trans 'No data available' %}" class="elevation-1 pt-5">
+    <template v-slot:top>
+      <v-toolbar flat color="white">
+        <v-toolbar-title>
+          <h2 class="subtitle-2">[[ table.tTitle ]]</h2>
+        </v-toolbar-title>
+        <v-divider class="mx-4" inset vertical />
+        <v-spacer />
+        <v-text-field v-model="table.tSearch" label="{% trans 'Search in table' %}" prepend-inner-icon="mdi-magnify"
+          clearable clear-icon="mdi-close-circle" outlined dense class="mb-0 pt-4" color="orange"></v-text-field>
+        <v-spacer />
+      </v-toolbar>
+    </template>
+
+    <template v-slot:item.name="{ item }">
+      <a class="black--text" @click="gotoItem('table', item)">[[ item.name ]]</a>
+    </template>
+
+    <template v-slot:item.fav="{ item }">
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn color="transparent" small ripple depressed v-on="on">
+            <v-icon v-model="isFavored(item)" @click="favItem('table', item)" color="" small>
+              mdi-heart
+            </v-icon>
+          </v-btn>
+        </template>
+        <span>{% trans 'Add to Fav List' %}</span>
+      </v-tooltip>
+    </template>
+
+    <template v-slot:item.action="{ item }">
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn color="transparent" small ripple depressed v-on="on">
+            <v-icon small @click="gotoItem('table', item)">
+              mdi-information-outline
+            </v-icon>
+          </v-btn>
+        </template>
+        <span>{% trans 'Go' %}</span>
+      </v-tooltip>
+    </template>
+
+    <template v-slot:item.actionS="{ item }">
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn color="transparent" small ripple depressed v-on="on">
+            <v-icon small @click="gotoItem('table', item)">
+              mdi-information-outline
+            </v-icon>
+          </v-btn>
+        </template>
+        <span>{% trans 'Go' %}</span>
+      </v-tooltip>
+
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn small ripple depressed color="transparent" v-on="on">
+            <v-icon small @click="editItem('table', item)" color="green">
+              mdi-pencil
+            </v-icon>
+          </v-btn>
+        </template>
+        <span>{% trans 'Edit' %}</span>
+      </v-tooltip>
+
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn small ripple depressed color="transparent" v-on="on">
+            <v-icon small @click="deleteItem('table', item)" color="red darken-2">
+              mdi-delete
+            </v-icon>
+          </v-btn>
+        </template>
+        <span>{% trans 'Delete' %}</span>
+      </v-tooltip>
+    </template>
+
+  </v-data-table>
+</v-card>

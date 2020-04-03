@@ -1,0 +1,294 @@
+{% extends 'vue/celebs/index.html' %} {% load static i18n %} {% block content %}
+<ic-celeb-detail></ic-celeb-detail>
+{% endblock %} {% block extrascript %}
+<script>
+  Vue.component("ic-celeb-detail", {
+    delimiters: ["[[", "]]"],
+    template: `
+      <div>
+        {% include 'vue/cp-title.html' %}
+
+        <v-card class="mb-5 pb-5 px-5">
+
+          <v-row>
+            <v-col cols="12" sm="6">
+
+            </v-col>
+            <v-col cols="12" sm="6" v-if="page.birthDate || page.birthPlace">
+              <div class="caption">
+                <strong>Birth Date / Birth Place:</strong>
+                  [[ page.birthDate ]] ([[ page.age ]] years old) / [[ page.birthPlace ]]
+                <br>
+              </div>
+            </v-col>
+          </v-row>
+
+          <kbd>{% trans 'Biography' %}:</kbd>&nbsp;
+          <span v-if="!readMore">
+            [[ page.content.slice(0,500) ]]
+          </span>
+          <span v-else style="white-space: pre-wrap">[[ page.content ]]</span>
+          <v-btn small @click="readMore = !readMore" v-if="page.content">
+            <v-icon v-if="!readMore">mdi-chevron-down-box</v-icon>
+            <v-icon v-else>mdi-chevron-up-box</v-icon>
+          </v-btn>
+          <p class="caption py-2" v-if="page.sourceContent">
+            <kbd>{% trans 'Biography source' %}:</kbd>
+            <a :href="page.sourceContent" target="_blank">
+              [[ page.sourceContent ]]
+            </a>
+            <v-divider inset />
+          </p>
+          <a name="cast"></a>
+          <h2 class="mt-5">{% trans 'Filmography' %}</h2>
+          <v-simple-table>
+            <tbody>
+              <tr v-for="item in list.lMovieData" :key="item.movie.id + item.duty.code">
+                <td>
+                  <a
+                    @click.prevent="gotoItem(page.pMovieDetailUrl, item.movie.slug)"
+                  >[[ item.movie.name ]]</a> ...
+                  <span class="font-italic">[[ item.duty.name ]]</span>
+                  <span class="font-italic" v-if="item.role">([[ item.role ]])</span>
+                  <span v-if="item.screen_name">
+                  <span class="font-weight-light">as</span> [[ item.screen_name ]]</span>
+                </td>
+              </tr>
+            </tbody>
+          </v-simple-table>
+        </v-card>
+
+        <div v-if="dialog.dDialog">
+          {% include 'vue/celebs/celeb_form.html' %}
+        </div>
+
+        <div v-if="cudButton">
+          {% include 'vue/cp-cud.html' %}
+        </div>
+
+      </div>
+    `,
+    data() {
+      return {
+        page: {
+          pData: {},
+          pTitle: "",
+          pItemId: "",
+          pItemSlug: "",
+          pItem: "{% trans 'Celebrity' %}",
+          pItems: "{% trans 'Celebrities' %}",
+          pItemDetailUrl: "{% url 'celeb_detail' 0  %}".slice(0, -2),
+          pItemListUrl: "{% url 'celeb_list' %}",
+
+          pItemParentId: 0,
+          pItemParentName: 0,
+          pItemParent: "{% trans 'Duty' %}",
+          pItemParentDetailUrl: "{% url 'duty_detail' 0  %}".slice(0, -2),
+
+          pMovieDetailUrl: "{% url 'movie_detail' 0  %}".slice(0, -2),
+          content: '',
+          sourceContent: '',
+          birthDate: '',
+          birthPlace: '',
+          age: '',
+          image: "",
+          image_name: "",
+          image_thumbnail: ""
+        },
+
+        dialog: {
+          dDialog: false,
+          dDialogPage: false,
+          dDialogTable: false,
+          dValid: false,
+
+          dEditedSlug: "",
+          dEditedItem: {
+            id: "",
+            name: "",
+            slug: "",
+            last_name: "",
+            nick_name: "",
+            birth_date: "",
+            birth_place: "",
+            content: "",
+            source_content: "",
+            trailer: "",
+            image: "",
+            image_name: "",
+            credit_image: "",
+            duties: [],
+            inputRules: [
+              v => v.length > 0 || "{% trans 'Field is required' %}"
+            ],
+            imageRules: [
+              v => {
+                !v ||
+                  v.size < 2000000 ||
+                  "{% trans 'Avatar size should be less than 2 MB!' %}";
+              }
+            ]
+          },
+          dDefaultItem: {
+            id: "",
+            name: "",
+            slug: "",
+            last_name: "",
+            nick_name: "",
+            birth_date: "",
+            birth_place: "",
+            content: "",
+            source_content: "",
+            trailer: "",
+            image: "",
+            image_name: "",
+            credit_image: "",
+            duties: []
+          },
+
+          date_menu: false
+        },
+
+        list: {
+          lData: [],
+          lParentData: [],
+          lMovieData: [],
+          lDutyData: []
+        },
+
+        include: {
+          titleToolbar: false,
+          buttonAll: false,
+          selectParent: false,
+          selectFromParent: false,
+          select: false,
+
+          titleRatingButton: false,
+          titleFavButton: false,
+          titleImageVideo: true,
+
+          isMovie: false,
+          isCeleb: true,
+        },
+
+        delConfirmText: "{% trans 'Are you sure want to remove ' %}",
+        cudButton: false,
+        isAdmin: true,
+
+        sourceContent: '',
+        ratingOpen: false,
+        readMore: false,
+        rating: "",
+      };
+    },
+    computed: {
+      formTitle(item) {
+        return this.dialog.dEditedSlug === "" ?
+          "{% trans 'New ' %}" + this.page.pItem :
+          "{% trans 'Edit ' %}" + this.page.pTitle;
+      },
+      cloneRating() {
+        return "7.7/10"; // fixed for now
+      },
+      poster() {
+        if (this.page.image && this.page.image.search("default-celeb.jpg")) {
+          return this.page.image;
+        }
+        return this.page.image_thumbnail;
+      },
+    },
+    watch: {
+      dialog(val) {
+        val || this.close();
+      }
+    },
+    methods: {
+      initialize() {
+        // for details
+        this.page.pItemSlug = window.pageId();
+        window.icGet("celeb", this.page.pItemSlug).then(res => {
+          this.page.pData = res;
+          this.page.pItemId = this.page.pData.id;
+          this.page.pTitle = this.page.pData.full_name;
+          this.page.content = this.page.pData.content;
+          this.page.sourceContent = this.page.pData.source_content;
+          this.page.birthDate = this.page.pData.birth_date;
+          this.page.birthPlace = this.page.pData.birth_place;
+          this.page.age = this.page.pData.age;
+          this.page.sourceContent = this.page.pData.source_content;
+          this.page.image_thumbnail = this.page.pData.image_thumbnail;
+        });
+
+        // for select list (Parent)
+        // It should be initialized here for list to be loaded in form pages.
+        this.getListCrew();
+        this.getListDuty();
+      },
+      gotoAll() {
+        window.icGoto(this.page.pItemListUrl);
+      },
+      gotoItem(url, item) {
+        window.icGoto(url, item);
+      },
+      gotoListItem(item) {
+        window.icGoto(this.page.pItemDetailUrl, item);
+      },
+      addItem(from) {
+        this.dialog.dEditedSlug = "";
+        // this.dialog.dEditedItem.duty = this.page.pItemParentId; // !!!
+        this.dialog.dDialog = true;
+      },
+      editItem(from, item) {
+        this.dialog.dEditedSlug = this.page.pItemSlug;
+        this.dialog.dEditedItem = Object.assign({}, this.page.pData);
+        this.dialog.dDialog = true;
+      },
+      deleteItem(from, item) {
+        if (confirm(this.delConfirmText + this.page.pData.name + "?")) {
+          window.icDelete("celeb", this.page.pItemSlug);
+          this.gotoParent();
+        }
+      },
+
+      saveItem() {
+        if (this.$refs.form.validate()) {
+          if (this.dialog.dEditedSlug === "") {
+            window.icPost("celeb", this.dialog.dEditedItem);
+          } else {
+            window.icPut(
+              "celeb",
+              this.dialog.dEditedItem,
+              this.dialog.dEditedSlug
+            );
+          }
+          this.closeDialog();
+        }
+      },
+      closeDialog() {
+        this.dialog.dDialog = this.dialog.dDialogPage = this.dialog.dDialogTable = false;
+        this.dialog.dValid = false;
+        setTimeout(() => {
+          this.dialog.dEditedItem = Object.assign({}, this.dialog.dDefaultItem);
+          this.dialog.dEditedSlug = "";
+          this.initialize();
+        }, 300);
+      },
+
+      getListCrew() {
+        window.icGet("celeb", this.page.pItemSlug, "movies").then(res => {
+          this.list.lMovieData = res;
+        });
+      },
+      getListDuty() {
+        window.icGet("duty").then(res => {
+          this.list.lDutyData = res;
+        });
+      }
+    },
+
+    created() {
+      this.initialize();
+    }
+  });
+</script>
+{% endblock %}

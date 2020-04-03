@@ -1,0 +1,68 @@
+{% load i18n %}
+<template>
+  <v-row justify="center">
+    <v-dialog v-model="dialog.dDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
+      @keydown.esc="closeDialog">
+      <v-card>
+        <v-form v-model="dialog.dValid" ref="form">
+          <v-toolbar dark color="orange">
+            <v-btn icon dark @click="closeDialog">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+            <v-toolbar-title>[[ formTitle ]]</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-items>
+              <v-btn dark text @click="saveItem">Save</v-btn>
+            </v-toolbar-items>
+          </v-toolbar>
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field v-model="dialog.dEditedItem.name" label="{% trans 'Title' %}"
+                    :rules="dialog.dEditedItem.inputRules" @keydown.enter="saveItem" color="orange" required>
+                  </v-text-field>
+                </v-col>
+                <v-col cols="12" sm="6">
+                  <v-select v-model="dialog.dEditedItem.genres" :items="list.lGenreData" item-text="name"
+                    item-value="id" label="{% trans 'Select' %}" hint="{% trans 'Genres' %}" class="ml-5" color="orange"
+                    solo persistent-hint multiple></v-select>
+                </v-col>
+                <v-col cols="12" sm="6">
+                  <v-select v-model="dialog.dEditedItem.pg_rating" :items="list.lPgRatingData" item-text="name"
+                    item-value="id" label="{% trans 'Select' %}" hint="{% trans 'PG Rating' %}" class="ml-5"
+                    color="orange" solo persistent-hint></v-select>
+                </v-col>
+                <v-col cols="12" sm="9">
+                  <v-textarea v-model="dialog.dEditedItem.content" label="{% trans 'Content' %}"
+                    :rules="dialog.dEditedItem.inputRules" filled color="orange" auto-grow></v-textarea>
+                </v-col>
+                <v-col cols="12" sm="3">
+                  <v-text-field v-model="dialog.dEditedItem.imdb_rating" label="{% trans 'IMDB Rating' %}"
+                    :rules="dialog.dEditedItem.inputRules" @keydown.enter="saveItem" color="orange" required>
+                  </v-text-field>
+                  <v-text-field v-model="dialog.dEditedItem.release_year" label="{% trans 'Release Year' %}"
+                    :rules="dialog.dEditedItem.inputRules" @keydown.enter="saveItem" color="orange" required>
+                  </v-text-field>
+                  <v-text-field v-model="dialog.dEditedItem.duration" label="{% trans 'Duration' %}"
+                    :rules="dialog.dEditedItem.inputRules" @keydown.enter="saveItem" hint="{% trans 'min' %}"
+                    color="orange" required persistent-hint></v-text-field>
+                </v-col>
+                <v-col cols="12">
+                  <v-text-field v-model="dialog.dEditedItem.source_content" label="{% trans 'Content Source' %}"
+                    :rules="dialog.dEditedItem.inputRules" @keydown.enter="saveItem" color="orange" required>
+                  </v-text-field>
+                </v-col>
+                <v-col cols="12">
+                  <v-text-field v-model="dialog.dEditedItem.trailer" label="{% trans 'Trailer' %}"
+                    :rules="dialog.dEditedItem.inputRules" @keydown.enter="saveItem" color="orange" required>
+                  </v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+        </v-form>
+      </v-card>
+    </v-dialog>
+  </v-row>
+</template>

@@ -1,0 +1,73 @@
+{% load i18n %}
+<template>
+  <v-row justify="center">
+    <v-dialog v-model="dialog.dDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
+      @keydown.esc="closeDialog">
+      <v-card>
+        <v-form v-model="dialog.dValid" ref="form">
+          <v-toolbar dark color="orange">
+            <v-btn icon dark @click="closeDialog">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+            <v-toolbar-title>[[ formTitle ]]</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-items>
+              <v-btn dark text @click="saveItem">Save</v-btn>
+            </v-toolbar-items>
+          </v-toolbar>
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col cols="12" sm="12">
+                  <v-select v-model="dialog.dEditedItem.duties" :items="list.lDutyData" item-text="name" item-value="id"
+                    label="{% trans 'Select' %}" hint="{% trans 'Duties' %}" class="ml-5" color="orange" solo
+                    persistent-hint multiple></v-select>
+                </v-col>
+                <v-col cols="12" sm="4">
+                  <v-text-field v-model="dialog.dEditedItem.name" label="{% trans 'First Name' %}"
+                    :rules="dialog.dEditedItem.inputRules" @keydown.enter="saveItem" color="orange" required>
+                  </v-text-field>
+                </v-col>
+                <v-col cols="12" sm="4">
+                  <v-text-field v-model="dialog.dEditedItem.last_name" label="{% trans 'Last Name' %}"
+                    :rules="dialog.dEditedItem.inputRules" @keydown.enter="saveItem" color="orange" required>
+                  </v-text-field>
+                </v-col>
+                <v-col cols="12" sm="4">
+                  <v-text-field v-model="dialog.dEditedItem.nick_name" label="{% trans 'Nick Name' %}"
+                    @keydown.enter="saveItem" color="orange"></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="6" md="4">
+                  <v-menu v-model="dialog.date_menu" :close-on-content-click="false" :nudge-right="40"
+                    transition="scale-transition" offset-y min-width="290px">
+                    <template v-slot:activator="{ on }">
+                      <v-text-field v-model="dialog.dEditedItem.birth_date" label="{% trans 'Birth Date' %}"
+                        prepend-icon="mdi-event" readonly v-on="on" @keydown.enter="saveItem" color="orange">
+                      </v-text-field>
+                    </template>
+                    <v-date-picker v-model="dialog.dEditedItem.birth_date" @input="dialog.date_menu = false"
+                      color="orange"></v-date-picker>
+                  </v-menu>
+                </v-col>
+                <v-col cols="12" sm="6" md="4">
+                  <v-text-field v-model="dialog.dEditedItem.birth_place" label="{% trans 'Birth Place' %}"
+                    @keydown.enter="saveItem" color="orange"></v-text-field>
+                </v-col>
+                <v-col cols="12">
+                  <v-textarea v-model="dialog.dEditedItem.content" label="{% trans 'Biography' %}"
+                    :rules="dialog.dEditedItem.inputRules" color="orange" filled auto-grow></v-textarea>
+                  <v-text-field v-model="dialog.dEditedItem.source_content" label="{% trans 'Content Source' %}"
+                    :rules="dialog.dEditedItem.inputRules" @keydown.enter="saveItem" color="orange"></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="12">
+                  <v-text-field v-model="dialog.dEditedItem.trailer" label="{% trans 'Trailer' %}"
+                    :rules="dialog.dEditedItem.inputRules" @keydown.enter="saveItem" color="orange"></v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+        </v-form>
+      </v-card>
+    </v-dialog>
+  </v-row>
+</template>

@@ -1,0 +1,335 @@
+{% extends 'vue/movies/index.html' %} {% load static i18n %} {% block content %}
+<ic-movie-detail></ic-movie-detail>
+{% endblock %} {% block extrascript %}
+<script>
+  Vue.component("ic-movie-detail", {
+    delimiters: ["[[", "]]"],
+    template: `
+      <div>
+        {% include 'vue/cp-title.html' %}
+
+        <v-card class="mb-5 pa-5">
+
+            <div class="caption">
+              <strong>Directors:</strong>
+                <span v-for="item in list.lCrewData" v-if="item.duty.code==='D'">
+                  <a :key="item.crew.id"
+                    @click.prevent="gotoItem(page.pCrewDetailUrl, item.crew.slug)"
+                  >[[ item.crew.name ]]</a>,
+                </span>
+              <br>
+              <strong>Writers:</strong>
+                <span v-for="item in list.lCrewData" v-if="item.duty.code==='W'">
+                  <a :key="item.crew.id"
+                    @click.prevent="gotoItem(page.pCrewDetailUrl, item.crew.slug)"
+                  >[[ item.crew.name ]]</a>,
+                </span>
+              <br>
+              <strong>Stars:</strong>
+                <span v-for="item in list.lCrewData" v-if="item.duty.code==='C'">
+                  <a :key="item.crew.id"
+                    @click.prevent="gotoItem(page.pCrewDetailUrl, item.crew.slug)"
+                  >[[ item.crew.name ]]</a>,
+                </span>
+                &nbsp;&nbsp;» <a href="#cast">Full Cast & Crew List</a>
+              <br>
+          </div>
+          <v-col cols="6">
+          </v-col>
+          <kbd>{% trans 'Spoiler' %}: </kbd>
+          <span v-if="!readMore">
+            [[ page.content.slice(0,500) ]]
+          </span>
+          <span v-else style="white-space: pre-wrap">[[ page.content ]]</span>
+            <v-btn small @click="readMore = !readMore" v-if="page.content">
+              <v-icon v-if="!readMore">mdi-chevron-down-box</v-icon>
+              <v-icon v-else>mdi-chevron-up-box</v-icon>
+            </v-btn>
+          <p class="caption text-left py-2" v-if="page.sourceContent">
+            <kbd>{% trans 'Content source' %}:</kbd>
+            <a :href="page.sourceContent" target="_blank">
+              [[ page.sourceContent ]]
+            </a>
+            <v-divider inset />
+          </p>
+          <a name="cast"></a>
+          <h2 class="mt-5">{% trans 'Cast & Crew' %}</h2>
+          <v-simple-table>
+            <tbody>
+              <tr v-for="item in list.lCrewData" :key="item.crew.id + item.duty.code">
+                <td>
+                  <a
+                    @click.prevent="gotoItem(page.pCrewDetailUrl, item.crew.slug)"
+                  >[[ item.crew.name ]]</a> ...
+                  <span class="font-italic">[[ item.duty.name ]]</span>
+                  <span class="font-italic" v-if="item.role">([[ item.role ]])</span>
+                  <span v-if="item.screen_name">
+                  <span class="font-weight-light">as</span> [[ item.screen_name ]]</span>
+                </td>
+              </tr>
+            </tbody>
+          </v-simple-table>
+        </v-card>
+
+        <div v-if="dialog.dDialog">
+          {% include 'vue/movies/movie_form.html' %}
+        </div>
+
+        <div v-if="cudButton">
+          {% include 'vue/cp-cud.html' %}
+        </div>
+
+      </div>
+    `,
+    data() {
+      return {
+        page: {
+          pData: {},
+          pTitle: "",
+          pItemId: "",
+          pItemSlug: "",
+          pItem: "{% trans 'Movie' %}",
+          pItems: "{% trans 'Movies' %}",
+          pItemDetailUrl: "{% url 'movie_detail' 0  %}".slice(0, -2),
+          pItemListUrl: "{% url 'movie_list' %}",
+          // pItemApiUrl: "/api/v1/movie/",
+
+          pItemParentId: 0,
+          pItemParentName: 0,
+          pItemParent: "{% trans 'Genre' %}",
+          // pItemParentApiUrl: "/api/v1/genre/",
+          pItemParentDetailUrl: "{% url 'genre_detail' 0  %}".slice(0, -2),
+
+          pCrewDetailUrl: "{% url 'celeb_detail' 0  %}".slice(0, -2),
+          content: '',
+          sourceContent: '',
+          pgRating: "",
+          imdbRating: 0,
+          image: "",
+          image_thumbnail: ""
+        },
+
+        dialog: {
+          dDialog: false,
+          dDialogPage: false,
+          dDialogTable: false,
+          dValid: false,
+
+          dEditedSlug: "",
+          dEditedItem: {
+            id: "",
+            name: "",
+            slug: "",
+            release_year: "",
+            duration: "",
+            imdb_rating: "",
+            pg_rating: "",
+            content: "",
+            source_content: "",
+            trailer: "",
+            image: "",
+            credit_image: "",
+            genres: [],
+            crews: [],
+            inputRules: [
+              v => v.length > 0 || "{% trans 'Field is required' %}"
+            ],
+            imageRules: [
+              v => {
+                !v ||
+                  v.size < 2000000 ||
+                  "{% trans 'Avatar size should be less than 2 MB!' %}";
+              }
+            ]
+          },
+          dDefaultItem: {
+            id: "",
+            name: "",
+            slug: "",
+            release_year: "",
+            duration: "",
+            imdb_rating: "",
+            pg_rating: "",
+            content: "",
+            source_content: "",
+            trailer: "",
+            image: "",
+            credit_image: "",
+            genres: [],
+            crews: []
+          }
+        },
+
+        list: {
+          lData: [],
+          lParentData: [],
+          lCrewData: [],
+          lGenreData: [],
+          lPgRatingData: []
+        },
+
+        include: {
+          titleToolbar: false,
+          buttonAll: false,
+          selectParent: false,
+          selectFromParent: false,
+          select: false,
+
+          titleRatingButton: true,
+          titleFavButton: false,
+          titleImageVideo: true,
+
+          isMovie: true,
+          isCeleb: false,
+        },
+
+        delConfirmText: "{% trans 'Are you sure want to remove ' %}",
+        cudButton: false,
+        isAdmin: true,
+
+        ratingOpen: false,
+        readMore: false,
+        rating: "",
+      };
+    },
+    computed: {
+      formTitle(item) {
+        return this.dialog.dEditedSlug === "" ?
+          "{% trans 'New ' %}" + this.page.pItem :
+          "{% trans 'Edit ' %}" + this.page.pTitle;
+      },
+      duration() {
+        movieDuration = this.page.pData.duration;
+        hour = ~~(movieDuration / 60);
+        min = movieDuration % 60;
+        return hour + "{% trans 'h' %}" + " " + min + "{% trans 'min' %}";
+      },
+      pgRating() {
+        return this.page.pgRating;
+      },
+      imdbRating() {
+        return this.page.imdbRating.toFixed(1) + "/10";
+      },
+      poster() {
+        if (this.page.image && this.page.image.search("default-movie.jpg")) {
+          return this.page.image;
+        }
+        return this.page.image_thumbnail;
+      },
+    },
+    watch: {
+      dialog(val) {
+        val || this.close();
+      }
+    },
+    methods: {
+      initialize() {
+        // for details
+        this.page.pItemSlug = window.pageId();
+        window.icGet("movie", this.page.pItemSlug).then(res => {
+          this.page.pData = res;
+          this.page.pItemId = this.page.pData.id;
+          this.page.pTitle = this.page.pData.name;
+          this.page.content = this.page.pData.content;
+          this.page.sourceContent = this.page.pData.source_content;
+          this.page.pgRating = this.page.pData.pg_rating.code;
+          this.page.imdbRating = this.page.pData.imdb_rating;
+          this.page.image_thumbnail = this.page.pData.image_thumbnail;
+        });
+
+        // for select list (Parent)
+        // It should be initialized here for list to be loaded in form pages.
+        this.getListParents();
+        this.getListCrew();
+        this.getListGenre();
+        this.getListPgRating();
+      },
+      gotoAll() {
+        window.icGoto(this.page.pItemListUrl);
+      },
+      gotoItem(url, item) {
+        window.icGoto(url, item);
+      },
+      gotoListItem(item) {
+        window.icGoto(this.page.pItemDetailUrl, item);
+      },
+      addItem(from) {
+        this.dialog.dEditedSlug = "";
+        this.dialog.dEditedItem.genre = this.page.pItemParentId; // !!!
+        this.dialog.dDialog = true;
+      },
+      editItem(from, item) {
+        this.dialog.dEditedSlug = this.page.pItemSlug;
+        this.dialog.dEditedItem.image = this.page.image;
+        this.dialog.dEditedItem = Object.assign({}, this.page.pData);
+        this.dialog.dDialog = true;
+      },
+      deleteItem(from, item) {
+        if (confirm(this.delConfirmText + this.page.pData.name + "?")) {
+          window.icDelete("movie", this.page.pItemSlug);
+          this.gotoParent();
+        }
+      },
+
+      saveItem() {
+        if (this.$refs.form.validate()) {
+          if (this.dialog.dEditedSlug === "") {
+            window.icPost("movie", this.dialog.dEditedItem);
+          } else {
+            window.icPut(
+              "movie",
+              this.dialog.dEditedItem,
+              this.dialog.dEditedSlug
+            );
+          }
+          this.closeDialog();
+        }
+      },
+      closeDialog() {
+        this.dialog.dDialog = this.dialog.dDialogPage = this.dialog.dDialogTable = false;
+        this.dialog.dValid = false;
+        setTimeout(() => {
+          this.dialog.dEditedItem = Object.assign({}, this.dialog.dDefaultItem);
+          this.dialog.dEditedSlug = "";
+          this.initialize();
+        }, 300);
+      },
+
+      getListParents() {
+        window.icGet("movie", this.page.pItemSlug, "genres").then(res => {
+          this.list.lParentData = res;
+        });
+      },
+      getListCrew() {
+        window.icGet("movie", this.page.pItemSlug, "crews").then(res => {
+          this.list.lCrewData = res;
+        });
+      },
+      getList(item) {
+        window
+          .icGet("genre", item, "movies") // !!!
+          .then(res => {
+            this.list.lData = res;
+          });
+      },
+      getListGenre(item) {
+        window.icGet("genre").then(res => {
+          // !!!
+          this.list.lGenreData = res;
+        });
+      },
+      getListPgRating(item) {
+        window
+          .icGet("pg_rating") // !!!
+          .then(res => {
+            this.list.lPgRatingData = res;
+          });
+      }
+    },
+
+    created() {
+      this.initialize();
+    }
+  });
+</script>
+{% endblock %}

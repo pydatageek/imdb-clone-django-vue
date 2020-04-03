@@ -1,0 +1,183 @@
+{% extends 'vue/celebs/index.html' %} {% load static i18n %} {% block content %}
+<ic-duty-detail></ic-duty-detail>
+{% endblock %} {% block extrascript %}
+<script>
+  Vue.component("ic-duty-detail", {
+    delimiters: ["[[", "]]"],
+    template: `
+      <div>
+        {% include 'vue/cp-title.html' %}
+
+        <v-card class="mb-5">
+          <v-simple-table>
+            <template v-slot:default>
+              <tbody>
+                <tr>
+                  <td>{% trans 'Code' %}: </td>
+                  <td>[[ page.pData.code ]]</td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+        </v-card>
+
+        <div v-if="dialog.dDialog">
+          {% include 'vue/celebs/duty_form.html' %}
+        </div>
+
+        <div v-if="cudButton">
+          {% include 'vue/cp-cud.html' %}
+        </div>
+
+      </div>
+    `,
+    data() {
+      return {
+        page: {
+          pData: {},
+          pTitle: "",
+          pItemSlug: "",
+          pItem: "{% trans 'Duty' %}",
+          pItems: "{% trans 'Duties' %}",
+          pItemDetailUrl: "{% url 'duty_detail' 0  %}".slice(0, -2),
+          pItemListUrl: "{% url 'duty_list' %}",
+
+          image: "",
+          image_thumbnail: ""
+        },
+
+        dialog: {
+          dDialog: false,
+          dDialogPage: false,
+          dDialogTable: false,
+          dValid: false,
+
+          dEditedSlug: "",
+          dEditedItem: {
+            id: "",
+            name: "",
+            slug: "",
+            code: "",
+            inputRules: [v => v.length > 0 || "{% trans 'Field is required' %}"]
+          },
+          dDefaultItem: {
+            id: "",
+            name: "",
+            slug: "",
+            code: ""
+          }
+        },
+
+        list: {
+          lData: []
+        },
+
+        include: {
+          titleToolbar: true,
+          buttonAll: true,
+          selectParent: false,
+          selectFromParent: false,
+          select: true,
+
+          titleRatingButton: false,
+          titleFavButton: false,
+          titleImageVideo: false,
+
+          isMovie: false,
+          isCeleb: false,
+        },
+
+        delConfirmText: "{% trans 'Are you sure want to remove ' %}",
+        cudButton: false,
+        isAdmin: true
+      };
+    },
+    computed: {
+      formTitle(item) {
+        return this.dialog.dEditedSlug === "" ?
+          "{% trans 'New ' %}" + this.page.pItem :
+          "{% trans 'Edit ' %}" + this.page.pTitle;
+      }
+    },
+    watch: {
+      dialog(val) {
+        val || this.close();
+      }
+    },
+    methods: {
+      initialize() {
+        this.page.pItemSlug = window.pageId();
+        // !!!
+        window.icGet("duty", this.page.pItemSlug).then(res => {
+          this.page.pData = res;
+          this.page.pTitle = this.page.pData.name;
+        });
+
+        // for select list (Parent)
+        // It should be initialized here for list to be loaded in form pages.
+        this.getList();
+      },
+      gotoAll() {
+        window.icGoto(this.page.pItemListUrl);
+      },
+      gotoItem(url, item) {
+        window.icGoto(url, item);
+      },
+      gotoListItem(item) {
+        window.icGoto(this.page.pItemDetailUrl, item);
+      },
+      addItem(from) {
+        this.dialog.dEditedSlug = "";
+        this.dialog.dDialog = true;
+      },
+      editItem(from, item) {
+        this.dialog.dEditedSlug = this.page.pItemSlug;
+        this.dialog.dEditedItem = Object.assign({}, this.page.pData);
+        this.dialog.dDialog = true;
+      },
+      deleteItem(from, item) {
+        // !!!
+        if (confirm(this.delConfirmText + this.page.pData.name + "?")) {
+          window.icDelete("duty", this.page.pItemSlug); // !!!
+          this.gotoParent();
+        }
+      },
+
+      saveItem() {
+        if (this.$refs.form.validate()) {
+          if (this.dialog.dEditedSlug === "") {
+            window.icPost("duty", this.dialog.dEditedItem); // !!!
+          } else {
+            window.icPut(
+              "duty", // !!!
+              this.dialog.dEditedItem,
+              this.dialog.dEditedSlug
+            );
+          }
+          this.closeDialog();
+        }
+      },
+      closeDialog() {
+        this.dialog.dDialog = this.dialog.dDialogPage = this.dialog.dDialogTable = false;
+        this.dialog.dValid = false;
+        setTimeout(() => {
+          this.dialog.dEditedItem = Object.assign({}, this.dialog.dDefaultItem);
+          this.dialog.dEditedSlug = "";
+          this.initialize();
+        }, 300);
+      },
+
+      getList() {
+        // !!!
+        window.icGet("duty").then(res => {
+          this.list.lData = res;
+        });
+      }
+    },
+
+    created() {
+      this.initialize();
+    }
+  });
+</script>
+{% endblock %}

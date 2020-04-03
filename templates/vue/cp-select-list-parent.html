@@ -1,0 +1,13 @@
+{% load i18n %}
+<v-select
+  v-model="page.pItemParentId"
+  :items="list.lParentData"
+  item-text="name"
+  item-value="id"
+  label="{% trans 'Select' %}"
+  :hint="page.pItemParent"
+  @change="getList"
+  class="ml-5"
+  solo
+  persistent-hint
+></v-select>

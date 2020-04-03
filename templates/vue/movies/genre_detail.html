@@ -1,0 +1,257 @@
+{% extends 'vue/movies/index.html' %} {% load static i18n %} {% block content %}
+<ic-genre-detail></ic-genre-detail>
+{% endblock %} {% block extrascript %}
+<script>
+  Vue.component("ic-genre-detail", {
+    delimiters: ["[[", "]]"],
+    template: `
+      <div>
+        {% include 'vue/cp-title.html' %}
+
+        <v-card class="mb-5">
+          [[ page.pData.content ]]
+        </v-card>
+
+        <div v-if="dialog.dDialogPage">
+          {% include 'vue/movies/genre_form.html' %}
+        </div>
+        <div v-if="dialog.dDialogTable">
+          {% include 'vue/movies/movie_form.html' %}
+        </div>
+
+        {% include 'vue/cp-data-table.html' %}
+
+        <div v-if="cudButton">
+          {% include 'vue/cp-cud.html' %}
+        </div>
+
+      </div>
+    `,
+    data() {
+      return {
+        table: {
+          tData: [],
+          tLoading: true,
+          tSearch: "",
+          tHeaders: [{
+              text: "{% trans 'Title' %}",
+              value: "name"
+            },
+            {
+              text: "{% trans 'Release Year' %}",
+              value: "release_year"
+            },
+            {
+              text: "{% trans 'Duration' %}",
+              value: "duration"
+            },
+            {
+              text: "{% trans 'IMDB Rating' %}",
+              value: "imdb_rating"
+            },
+            {
+              text: "{% trans 'Actions' %}",
+              value: "action",
+              sortable: false
+            }
+          ],
+          tTitle: "{% trans 'Movies List' %}",
+          tItem: "{% trans 'Movie' %}",
+          tItemUrl: "{% url 'movie_detail' 0  %}".slice(0, -2),
+          tSelected: []
+        },
+
+        page: {
+          pData: {},
+          pTitle: "",
+          pItemSlug: "",
+          pItem: "{% trans 'Genre' %}",
+          pItems: "{% trans 'Genres' %}",
+          pItemDetailUrl: "{% url 'genre_detail' 0  %}".slice(0, -2),
+          pItemListUrl: "{% url 'genre_list' %}",
+
+          image: "",
+          image_thumbnail: ""
+        },
+
+        dialog: {
+          dDialog: false,
+          dDialogPage: false,
+          dDialogTable: false,
+          dValid: false,
+
+          dEditedSlug: "",
+          dEditedItem: {
+            id: "",
+            name: "",
+            slug: "",
+            content: "",
+            inputRules: [
+              v => v.length > 0 || "{% trans 'Field is required' %}"
+            ],
+            contentRules: [
+              v => v.length <= 250 || "{% trans 'Max 250 characters!' %}"
+            ]
+          },
+          dDefaultItem: {
+            id: "",
+            name: "",
+            slug: "",
+            content: ""
+          }
+        },
+
+        list: {
+          lData: []
+        },
+
+        include: {
+          titleToolbar: true,
+          buttonAll: true,
+          selectParent: false,
+          selectFromParent: false,
+          select: true,
+
+          titleRatingButton: false,
+          titleFavButton: false,
+          titleImageVideo: false,
+
+          isMovie: false,
+          isCeleb: false,
+        },
+
+        delConfirmText: "{% trans 'Are you sure want to remove ' %}",
+        cudButton: false,
+        isAdmin: true,
+      };
+    },
+    computed: {
+      formTitle() {
+        if (this.dialog.dDialogPage) {
+          return this.dialog.dEditedSlug === "" ?
+            "{% trans 'New ' %}" + this.page.pItem :
+            "{% trans 'Edit ' %}" + this.page.pTitle; // NEW
+        } else if (this.dialog.dDialogTable) {
+          return this.dialog.dEditedSlug === "" ?
+            "{% trans 'New ' %}" + this.table.tItem :
+            "{% trans 'Edit ' %}" + this.dialog.dEditedItem.name;
+        }
+      },
+
+      user() {
+        return parseInt("{{ user.id }}")
+      },
+    },
+    watch: {
+      dialog(val) {
+        val || this.close();
+      }
+    },
+    methods: {
+      initialize() {
+        this.page.pItemSlug = window.pageId();
+        // !!!
+        window.icGet("genre", this.page.pItemSlug).then(res => {
+          this.page.pData = res;
+          this.page.pTitle = this.page.pData.name;
+          this.page.pItemId = this.page.pData.id;
+        });
+
+        window
+          .icGet("genre", this.page.pItemSlug, "movies")
+          .then(res => {
+            this.table.tData = res;
+          })
+          .finally((this.table.tLoading = false));
+
+        // for select list (Parent)
+        // It should be initialized here for list to be loaded in form pages.
+        this.getList();
+      },
+      gotoAll() {
+        window.icGoto(this.page.pItemListUrl);
+      },
+      gotoItem(from, item) {
+        if (from === "table") {
+          window.icGoto(this.table.tItemUrl, item.slug);
+        }
+      },
+      gotoListItem(item) {
+        window.icGoto(this.page.pItemDetailUrl, item);
+      },
+      addItem(from) {
+        this.openDialog(from);
+        this.dialog.dEditedSlug = "";
+      },
+      editItem(from, item) {
+        this.openDialog(from);
+        if (from === "table") {
+          this.dialog.dEditedSlug = item.slug;
+          this.dialog.dEditedItem = Object.assign({}, item);
+        } else if (from === "page") {
+          this.dialog.dEditedSlug = this.page.pItemSlug;
+          this.dialog.dEditedItem = Object.assign({}, this.page.pData);
+        }
+      },
+      deleteItem(from, item) {
+        if (from === "table") {
+          if (confirm(this.delConfirmText + item.name + "?")) {
+            window.icDelete("movie", item.slug); // !!!
+            window.icGoto(this.page.pItemDetailUrl, this.page.pItemSlug);
+          }
+        } else if (from === "page") {
+          if (confirm(this.delConfirmText + this.page.pData.name + "?")) {
+            window.icDelete("genre", this.page.pItemSlug); // !!!
+            this.gotoAll();
+          }
+        }
+      },
+
+      saveItem() {
+        var url = this.dialog.dDialogPage ?
+          "genre" :
+          this.dialog.dDialogTable ?
+          "movie" :
+          "";
+
+        if (this.$refs.form.validate()) {
+          if (this.dialog.dEditedSlug === "") {
+            window.icPost(url, this.dialog.dEditedItem);
+          } else {
+            window.icPut(url, this.dialog.dEditedItem, this.dialog.dEditedSlug);
+          }
+          this.closeDialog();
+        }
+      },
+      closeDialog() {
+        this.dialog.dDialog = this.dialog.dDialogPage = this.dialog.dDialogTable = false;
+        this.dialog.dValid = false;
+        setTimeout(() => {
+          this.dialog.dEditedItem = Object.assign({}, this.dialog.dDefaultItem);
+          this.dialog.dEditedSlug = "";
+          this.initialize();
+        }, 300);
+      },
+      openDialog(from) {
+        this.dialog.dDialog = true;
+        from === "table" ?
+          (this.dialog.dDialogTable = true) :
+          from === "page" ?
+          (this.dialog.dDialogPage = true) :
+          "";
+      },
+
+      getList() {
+        // !!!
+        window.icGet("genre").then(res => {
+          this.list.lData = res;
+        });
+      }
+    },
+
+    created() {
+      this.initialize();
+    }
+  });
+</script>
+{% endblock %}

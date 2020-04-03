@@ -1,0 +1,13 @@
+{% load i18n %}
+<v-select
+  v-model="page.pData.slug"
+  :items="list.lData"
+  item-text="name"
+  item-value="slug"
+  label="{% trans 'Select' %}"
+  :hint="page.pItem"
+  @change="gotoListItem"
+  class="ml-5"
+  solo
+  persistent-hint
+></v-select>
