@@ -1,6 +1,8 @@
 # IMDB Clone
 ## A movie and celebrity info website.
 
+there are screenshots here.
+
 ## Used technology:
 Django, Django Rest Framework and Vue.js via CDN (No npm or webpack configuration is needed! It is like a usual django website.) Vue is used for visitor pages.
 
